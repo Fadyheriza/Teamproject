@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="" />
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Background check and 3 buttons check game window 500 x400" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +17,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Fadyheriza"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="9a17095d-2dec-4a4b-8201-a3a3549f45cd" />
+        <option name="url" value="https://github.com/Fadyheriza/Teamproject.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 4
@@ -33,6 +47,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "trusted.hosts",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -44,8 +63,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704132656448</updated>
-      <workItem from="1704132657451" duration="3000" />
+      <workItem from="1704132657451" duration="1902000" />
     </task>
+    <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
+      <option name="closed" value="true" />
+      <created>1704134555106</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1704134555106</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Background check and 3 buttons check game window 500 x400" />
+    <option name="LAST_COMMIT_MESSAGE" value="Background check and 3 buttons check game window 500 x400" />
   </component>
 </project>

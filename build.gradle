@@ -17,8 +17,8 @@ ext {
   junitVersion = '5.9.2'
 }
 
-sourceCompatibility = '20'
-targetCompatibility = '20'
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 tasks.withType(JavaCompile) {
   options.encoding = 'UTF-8'
@@ -30,21 +30,16 @@ application {
 }
 
 javafx {
-  version = '20.0.1'
+  version = '17'  // Adjusted to a stable JavaFX version compatible with Java 17
   modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
 }
 
 dependencies {
   implementation('org.controlsfx:controlsfx:11.1.2')
-  implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
-    exclude(group: 'org.openjfx')
-  }
-  implementation('net.synedra:validatorfx:0.4.0') {
-    exclude(group: 'org.openjfx')
-  }
+  implementation('com.dlsc.formsfx:formsfx-core:11.6.0')
+  implementation('net.synedra:validatorfx:0.4.0')
   implementation('com.github.almasb:fxgl:17.2') {
     exclude(group: 'org.openjfx')
-    exclude(group: 'org.jetbrains.kotlin')
   }
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
@@ -52,7 +47,8 @@ dependencies {
 }
 
 test {
-useJUnitPlatform()}
+  useJUnitPlatform()
+}
 
 jlink {
   imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")

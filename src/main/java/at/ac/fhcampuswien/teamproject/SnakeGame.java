@@ -25,9 +25,9 @@ public class SnakeGame extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
-        // Initialize MediaPlayer with a music file
-        String musicFile = "C:\\Users\\kingp\\Downloads\\tv.mp3"; // Replace with the path to your music file
-        Media sound = new Media(new File(musicFile).toURI().toString());
+        // Initialize MediaPlayer with a music link
+        String musicUrl = "https://github.com/Fadyheriza/Music/raw/main/tv.mp3";
+        Media sound = new Media(musicUrl);
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play(); // Start playing the music
 

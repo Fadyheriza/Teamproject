@@ -142,7 +142,6 @@ public class StandardGameMode {
             score++;
         }
 
-
         // background
         gc.setFill(Color.GREEN);
         gc.fillRect(0, 0, width * cornersize, height * cornersize);

@@ -8,11 +8,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-
+import java.util.List;
 
 
 public class SnakeGame extends Application {
@@ -156,7 +157,6 @@ public class SnakeGame extends Application {
         layout.setAlignment(Pos.CENTER);
         layout.setFillWidth(true); // Ensure the VBox fills its width
 
-
         // Background setup
         String imageUrl = "https://html5-games.io/data/image/snakelogo.png";
         Image backgroundImage = new Image(imageUrl);
@@ -164,11 +164,44 @@ public class SnakeGame extends Application {
         Background backgroundLayout = new Background(background);
         layout.setBackground(backgroundLayout);
 
-        // Configure HBox for Standard Mode
-        HBox standardModeLayout = createModeLayout("Standard Mode", "Advanced Mod");
+        // Standard Mode Button
+        Button standardModeButton = new Button("Standard Mode");
+        standardModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
+        standardModeButton.setOnAction(e -> {
+            // Logic to start the standard mode game
+            Scene standardGameScene = StandardGameMode.createGameScene(standardModeHighScores, username);
+            primaryStage.setScene(standardGameScene);
+        });
 
-        // Configure HBox for Advanced Mode
-        HBox advancedModeLayout = createModeLayout("Standard High Score", "Advanced High Score");
+        // Standard High Score Button
+        Button standardHighScoreButton = new Button("Standard High Score");
+        standardHighScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
+        standardHighScoreButton.setOnAction(e -> {
+            Scene highScoreScene = createHighScoreScene("Standard");
+            primaryStage.setScene(highScoreScene);
+        });
+
+        // Advanced Mode Button
+        Button advancedModeButton = new Button("Advanced Mode");
+        advancedModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
+        advancedModeButton.setOnAction(e -> {
+            System.out.println("High Score Button Pressed2");
+        });
+
+        // Advanced High Score Button
+        Button advancedHighScoreButton = new Button("Advanced High Score");
+        advancedHighScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
+        advancedHighScoreButton.setOnAction(e -> {
+            Scene highScoreScene = createHighScoreScene("Advanced");
+            primaryStage.setScene(highScoreScene);
+        });
+
+        // Configure HBoxes for buttons
+        HBox standardModeLayout = new HBox(10, standardModeButton, standardHighScoreButton);
+        standardModeLayout.setAlignment(Pos.CENTER);
+
+        HBox advancedModeLayout = new HBox(10, advancedModeButton, advancedHighScoreButton);
+        advancedModeLayout.setAlignment(Pos.CENTER);
 
         // Back Button
         Button backButton = new Button("Back");
@@ -176,29 +209,35 @@ public class SnakeGame extends Application {
         backButton.setOnAction(e -> primaryStage.setScene(mainMenuScene)); // Switch back to main menu
 
         // Add all layouts to the main VBox
-        layout.getChildren().addAll(standardModeLayout,advancedModeLayout, backButton);
+        layout.getChildren().addAll(standardModeLayout, advancedModeLayout, backButton);
         return layout;
     }
+    private Scene createHighScoreScene(String mode) {
+        VBox layout = new VBox(10);
+        layout.setAlignment(Pos.CENTER);
+        layout.setPadding(new Insets(10));
 
-    private HBox createModeLayout(String modeButtonText, String highScoreButtonText) {
-        HBox modeLayout = new HBox(10); // Spacing between buttons
-        modeLayout.setAlignment(Pos.CENTER);
+        Label titleLabel = new Label(mode + " High Scores");
+        titleLabel.setFont(new Font("Arial", 20));
 
-        Button modeButton = new Button(modeButtonText);
-        Button highScoreButton = new Button(highScoreButtonText);
+        ListView<String> highScoreList = new ListView<>();
+        List<HighScore> highScores = (mode.equals("Standard")) ? standardModeHighScores.getHighScores(mode) : advancedModeHighScores.getHighScores(mode);
 
-        modeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
-        highScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
+        // Process and display high scores with rankings
+        int rank = 1;
+        for (HighScore hs : highScores) {
+            String scoreEntry = rank + ": " + hs.getUsername() + " - " + hs.getScore();
+            highScoreList.getItems().add(scoreEntry);
+            rank++;
+        }
 
-        modeButton.setOnAction(e -> {
-            Scene standardGameScene = StandardGameMode.createGameScene();
-            primaryStage.setScene(standardGameScene);
-        });
+        Button backButton = new Button("Back");
+        backButton.setOnAction(e -> primaryStage.setScene(gameModeScene)); // Go back to the game mode selection scene
 
-        modeLayout.getChildren().addAll(modeButton, highScoreButton);
-        return modeLayout;
+        layout.getChildren().addAll(titleLabel, highScoreList, backButton);
+
+        return new Scene(layout, 300, 400);
     }
-
 
 
     private VBox createSettingsLayout() {
@@ -247,6 +286,8 @@ public class SnakeGame extends Application {
 
         layout.getChildren().addAll(volumeSlider, muteCheckbox, backButton);
         return layout;
+
+
     }
 
 

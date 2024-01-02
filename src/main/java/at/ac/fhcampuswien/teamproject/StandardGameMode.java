@@ -25,6 +25,8 @@ public class StandardGameMode {
     static Dir direction = Dir.left;
     static boolean gameOver = false;
     static Random rand = new Random();
+    private static HighScoreManager highScoreManager;
+    private static String currentPlayerUsername;
 
     public enum Dir {
         left, right, up, down
@@ -40,7 +42,9 @@ public class StandardGameMode {
         }
     }
 
-    public static Scene createGameScene() {
+    public static Scene createGameScene(HighScoreManager scoreManager, String username) {
+        highScoreManager = scoreManager;
+        currentPlayerUsername = username;
         newFood();
 
         Pane root = new Pane();
@@ -93,6 +97,10 @@ public class StandardGameMode {
     public static void tick(GraphicsContext gc) {
 
         if (gameOver) {
+            if (score > 0) {
+                highScoreManager.addScore(currentPlayerUsername, score, "Standard");
+            }
+
             gc.setFill(Color.RED);
             gc.setFont(new Font("", 100));
             gc.fillText("LOSER!", 100, 250);

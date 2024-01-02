@@ -41,6 +41,8 @@ dependencies {
   implementation('com.github.almasb:fxgl:17.2') {
     exclude(group: 'org.openjfx')
   }
+  // SQLite JDBC dependency
+  implementation 'org.xerial:sqlite-jdbc:3.34.0'
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

@@ -13,10 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class StandardGameMode {
-    private static ImageView backgroundImageView;
     static int score = 0;
     static int speed = 5;
     static int width = 20;

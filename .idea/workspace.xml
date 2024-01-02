@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy" />
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +81,7 @@
       <recent name="at.ac.fhcampuswien.teamproject" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SnakeGame">
     <configuration name="SnakeGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -150,7 +152,8 @@
       <workItem from="1704207815358" duration="10000" />
       <workItem from="1704208029051" duration="634000" />
       <workItem from="1704208670749" duration="8000" />
-      <workItem from="1704209583434" duration="14564000" />
+      <workItem from="1704209583434" duration="14818000" />
+      <workItem from="1704225394405" duration="1028000" />
     </task>
     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
       <option name="closed" value="true" />
@@ -192,11 +195,38 @@
       <option name="project" value="LOCAL" />
       <updated>1704225074156</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy">
+      <option name="closed" value="true" />
+      <created>1704225159962</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704225159962</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy">
+      <option name="closed" value="true" />
+      <created>1704225276817</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704225276817</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Background check and 3 buttons check game window 500 x400" />

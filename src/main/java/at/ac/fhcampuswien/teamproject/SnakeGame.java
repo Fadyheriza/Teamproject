@@ -163,13 +163,6 @@ public class SnakeGame extends Application {
         Background backgroundLayout = new Background(background);
         layout.setBackground(backgroundLayout);
 
-        // Display high scores
-        Label highScoresLabel = new Label("High Scores");
-        VBox highScoresList = new VBox(5);
-        for (HighScore hs : standardModeHighScores.getHighScores()) {
-            highScoresList.getChildren().add(new Label(hs.toString()));
-        }
-
         // Configure HBox for Standard Mode
         HBox standardModeLayout = createModeLayout("Standard Mode", "Advanced Mod");
 
@@ -182,7 +175,7 @@ public class SnakeGame extends Application {
         backButton.setOnAction(e -> primaryStage.setScene(mainMenuScene)); // Switch back to main menu
 
         // Add all layouts to the main VBox
-        layout.getChildren().addAll(highScoresLabel, highScoresList, backButton);
+        layout.getChildren().addAll(standardModeLayout,advancedModeLayout, backButton);
         return layout;
     }
 

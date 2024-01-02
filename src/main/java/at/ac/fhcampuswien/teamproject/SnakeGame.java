@@ -156,6 +156,7 @@ public class SnakeGame extends Application {
         layout.setAlignment(Pos.CENTER);
         layout.setFillWidth(true); // Ensure the VBox fills its width
 
+
         // Background setup
         String imageUrl = "https://html5-games.io/data/image/snakelogo.png";
         Image backgroundImage = new Image(imageUrl);
@@ -188,6 +189,11 @@ public class SnakeGame extends Application {
 
         modeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         highScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
+
+        modeButton.setOnAction(e -> {
+            Scene standardGameScene = StandardGameMode.createGameScene();
+            primaryStage.setScene(standardGameScene);
+        });
 
         modeLayout.getChildren().addAll(modeButton, highScoreButton);
         return modeLayout;

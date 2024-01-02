@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Hauptspiel fehlt und aussehen der Schlange sowie Highscore">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" afterDir="false" />
-    </list>
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +150,7 @@
       <workItem from="1704207815358" duration="10000" />
       <workItem from="1704208029051" duration="634000" />
       <workItem from="1704208670749" duration="8000" />
-      <workItem from="1704209583434" duration="14460000" />
+      <workItem from="1704209583434" duration="14564000" />
     </task>
     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
       <option name="closed" value="true" />
@@ -190,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704162394675</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy">
+      <option name="closed" value="true" />
+      <created>1704225074156</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704225074156</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +202,7 @@
     <MESSAGE value="Background check and 3 buttons check game window 500 x400" />
     <MESSAGE value="Start game fehlt noch" />
     <MESSAGE value="Hauptspiel fehlt und aussehen der Schlange sowie Highscore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hauptspiel fehlt und aussehen der Schlange sowie Highscore" />
+    <MESSAGE value="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hauptspiel fehlt und aussehen der -fadySchlange sowie Highscore - Fady&#10; Standard Mode check - Izzy&#10; standard design schlange check - Izzy" />
   </component>
 </project>

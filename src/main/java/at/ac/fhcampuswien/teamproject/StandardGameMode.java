@@ -12,8 +12,11 @@ import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class StandardGameMode {
+    private static ImageView backgroundImageView;
     static int score = 0;
     static int speed = 5;
     static int width = 20;
@@ -27,6 +30,7 @@ public class StandardGameMode {
     static Random rand = new Random();
     private static HighScoreManager highScoreManager;
     private static String currentPlayerUsername;
+
 
     public enum Dir {
         left, right, up, down
@@ -46,6 +50,7 @@ public class StandardGameMode {
         highScoreManager = scoreManager;
         currentPlayerUsername = username;
         newFood();
+
 
         Pane root = new Pane();
         Canvas c = new Canvas(width * cornersize, height * cornersize);
@@ -97,10 +102,6 @@ public class StandardGameMode {
     public static void tick(GraphicsContext gc) {
 
         if (gameOver) {
-            if (score > 0) {
-                highScoreManager.addScore(currentPlayerUsername, score, "Standard");
-            }
-
             gc.setFill(Color.RED);
             gc.setFont(new Font("", 100));
             gc.fillText("LOSER!", 100, 250);
@@ -151,8 +152,10 @@ public class StandardGameMode {
         }
 
         // background
-        gc.setFill(Color.GREEN);
-        gc.fillRect(0, 0, width * cornersize, height * cornersize);
+        String imageUrl = "https://img.freepik.com/vektoren-kostenlos/nahtloses-gruenes-grasmuster_1284-52275.jpg?size=626&ext=jpg";
+        Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
+        gc.drawImage(image,0,0);
+
 
         // score
         gc.setFill(Color.WHITE);
@@ -200,8 +203,6 @@ public class StandardGameMode {
             }
         }
     }
-
-
 
     public static void addNewSegment() {
         Corner lastSegment = snake.get(snake.size() - 1);

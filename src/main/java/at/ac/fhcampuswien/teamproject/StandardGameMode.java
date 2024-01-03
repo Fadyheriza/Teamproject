@@ -1,6 +1,10 @@
 package at.ac.fhcampuswien.teamproject;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,8 +15,10 @@ import javafx.scene.text.Font;
 import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class StandardGameMode {
     static int score = 0;
@@ -28,7 +34,8 @@ public class StandardGameMode {
     static Random rand = new Random();
     private static HighScoreManager highScoreManager;
     private static String currentPlayerUsername;
-
+    private static Stage mainStage;
+    private static Scene mainMenuScene;
 
     public enum Dir {
         left, right, up, down
@@ -58,7 +65,14 @@ public class StandardGameMode {
         new AnimationTimer() {
             long lastTick = 0;
 
+            @Override
             public void handle(long now) {
+                if (gameOver) {
+                    this.stop(); // Stop the animation timer
+                    Platform.runLater(() -> handleGameOver()); // Handle game over on the JavaFX thread
+                    return;
+                }
+
                 if (lastTick == 0) {
                     lastTick = now;
                     tick(gc);
@@ -71,6 +85,7 @@ public class StandardGameMode {
                 }
             }
         }.start();
+
 
         c.setFocusTraversable(true);
         c.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
@@ -105,6 +120,7 @@ public class StandardGameMode {
             gc.fillText("LOSER!", 100, 250);
             return;
         }
+
         if (snake.size() == width * height) {
             gameOver = true;
             gc.setFill(Color.GOLD);
@@ -112,6 +128,7 @@ public class StandardGameMode {
             gc.fillText("WINNER!", 100, 250);
             return;
         }
+
         for (int i = snake.size() - 1; i >= 1; i--) {
             snake.get(i).x = snake.get(i - 1).x;
             snake.get(i).y = snake.get(i - 1).y;
@@ -201,9 +218,63 @@ public class StandardGameMode {
             }
         }
     }
+    public static void setMainStage(Stage stage) {
+        mainStage = stage;
+    }
 
     public static void addNewSegment() {
         Corner lastSegment = snake.get(snake.size() - 1);
         snake.add(new Corner(lastSegment.x, lastSegment.y));
     }
+
+    private static void handleGameOver() {
+        // Update the high score in the database
+        highScoreManager.addScore(currentPlayerUsername, score, "Standard");
+
+        // Reset the score for the next game
+        score = 0;
+
+        // Show game over screen and ask if the player wants to play again
+        showGameOverScreen();
+    }
+
+    public static void resetGame() {
+        // Reset game variables
+        snake.clear();
+        snake.add(new Corner(width / 2, height / 2));
+        snake.add(new Corner(width / 2, height / 2));
+        snake.add(new Corner(width / 2, height / 2));
+        direction = Dir.left;
+        gameOver = false;
+        newFood();
+    }
+
+    public static void setMainMenuScene(Scene scene) {
+        mainMenuScene = scene;
+    }
+
+    private static void showGameOverScreen() {
+        Alert gameOverAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        gameOverAlert.setTitle("Game Over");
+        gameOverAlert.setHeaderText(null);
+        gameOverAlert.setContentText("Would you like to play again?");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        gameOverAlert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = gameOverAlert.showAndWait();
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            resetGame();
+            Scene gameScene = createGameScene(highScoreManager, currentPlayerUsername);
+            mainStage.setScene(gameScene);
+        } else {
+            // Go back to the main menu
+            mainStage.setScene(mainMenuScene);
+        }
+    }
+
+
+
 }

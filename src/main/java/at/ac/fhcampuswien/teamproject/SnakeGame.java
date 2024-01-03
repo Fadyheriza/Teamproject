@@ -85,33 +85,32 @@ public class SnakeGame extends Application {
         String musicUrl = "https://github.com/Fadyheriza/Music/raw/main/tv.mp3";
         Media sound = new Media(musicUrl);
         mediaPlayer = new MediaPlayer(sound);
-        // Set the MediaPlayer to repeat the music indefinitely
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
 
-        // Username Input UI Setup
+        // Set up the initial scene to the username input scene
         VBox usernameInputLayout = createUsernameInputLayout();
         usernameInputScene = new Scene(usernameInputLayout, 517, 412);
+        primaryStage.setScene(usernameInputScene);
 
-        // Main Menu UI Setup
-        VBox mainMenuLayout = createMainMenuLayout();
+        // Prepare the main menu scene
+        prepareMainMenuScene();
 
         // Settings UI Setup
         VBox settingsLayout = createSettingsLayout();
-
-        // Prevent the window from being resizable
-        primaryStage.setResizable(false);
-
-        // Main Menu Scene
-        mainMenuScene = new Scene(mainMenuLayout, 517, 412);
-
-        // Settings Scene
         settingsScene = new Scene(settingsLayout, 517, 412);
 
         // Show Main Menu
         primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(usernameInputScene);
+        primaryStage.setResizable(false);
         primaryStage.show();
+    }
+
+    private void prepareMainMenuScene() {
+        VBox mainMenuLayout = createMainMenuLayout();
+        mainMenuScene = new Scene(mainMenuLayout, 517, 412);
+        StandardGameMode.setMainStage(primaryStage);
+        StandardGameMode.setMainMenuScene(mainMenuScene);
     }
 
     private VBox createMainMenuLayout() {
@@ -129,29 +128,31 @@ public class SnakeGame extends Application {
         Button startGameButton = new Button("Start Game");
         startGameButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         startGameButton.setOnAction(e -> {
+            StandardGameMode.resetGame(); // Reset the game state
             VBox gameModeLayout = createGameModeLayout();
             gameModeScene = new Scene(gameModeLayout, 517, 412);
             primaryStage.setScene(gameModeScene);
         });
 
         // Display Username
-        // Initialize and style the username label
         usernameLabel = new Label();
         usernameLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10px; -fx-text-fill: black; -fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0);");
 
         // Settings button action
         Button settingsButton = new Button("Settings");
         settingsButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
-        settingsButton.setOnAction(e -> primaryStage.setScene(settingsScene)); // Switch to settings scene
+        settingsButton.setOnAction(e -> primaryStage.setScene(settingsScene));
 
         // Quit Button
         Button quitButton = new Button("Quit");
         quitButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
-        quitButton.setOnAction(e -> primaryStage.close()); // Close the application
+        quitButton.setOnAction(e -> primaryStage.close());
 
-        layout.getChildren().addAll(usernameLabel,startGameButton, settingsButton, quitButton);
+        layout.getChildren().addAll(usernameLabel, startGameButton, settingsButton, quitButton);
+
         return layout;
     }
+
     private VBox createGameModeLayout() {
         VBox layout = new VBox(20); // Spacing between elements
         layout.setAlignment(Pos.CENTER);

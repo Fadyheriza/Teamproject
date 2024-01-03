@@ -38,6 +38,18 @@ public class StandardGameMode {
     private static Scene mainMenuScene;
     private static final double LERP_RATE = 0.1;
 
+    private static Canvas canvas;
+    private static GraphicsContext gc;
+    private static AnimationTimer shakeTimer;
+    private static void shakeSnake() {
+        Random random = new Random();
+        for (Corner c : snake) {
+            c.x += random.nextInt(3) - 1; // Zufällige Verschiebung um -1, 0 oder 1
+            c.y += random.nextInt(3) - 1;
+        }
+    }
+
+
     public enum Dir {
         left, right, up, down
     }
@@ -61,9 +73,9 @@ public class StandardGameMode {
 
 
         Pane root = new Pane();
-        Canvas c = new Canvas(width * cornersize, height * cornersize);
-        GraphicsContext gc = c.getGraphicsContext2D();
-        root.getChildren().add(c);
+        canvas = new Canvas(width * cornersize, height * cornersize);
+        gc = canvas.getGraphicsContext2D();
+        root.getChildren().add(canvas);
 
         new AnimationTimer() {
             long lastTick = 0;
@@ -90,8 +102,8 @@ public class StandardGameMode {
         }.start();
 
 
-        c.setFocusTraversable(true);
-        c.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+        canvas.setFocusTraversable(true);
+        canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.W && direction != Dir.down) {
                 direction = Dir.up;
             }
@@ -185,14 +197,18 @@ public class StandardGameMode {
         // Render everything
         render(gc);
     }
-    private static void render(GraphicsContext gc) {
+    private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
 
         // background
         String imageUrl = "https://img.freepik.com/vektoren-kostenlos/nahtloses-gruenes-grasmuster_1284-52275.jpg?size=626&ext=jpg";
         Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
-        gc.drawImage(image,0,0);
+        gc.drawImage(image, 0, 0);
+    }
+
+    private static void render(GraphicsContext gc) {
+        renderBackground(gc);
 
 
 
@@ -251,7 +267,19 @@ public class StandardGameMode {
         Corner lastSegment = snake.get(snake.size() - 1);
         snake.add(new Corner(lastSegment.x, lastSegment.y));
     }
+    private static void drawShakingSnake(GraphicsContext gc) {
+        Random random = new Random();
+        for (Corner c : snake) {
+            int shakeX = random.nextInt(3) - 1; // Zufällige Verschiebung um -1, 0 oder 1
+            int shakeY = random.nextInt(3) - 1;
 
+            // Zeichnen der Schlange mit zufälligen Verschiebungen
+            gc.setFill(Color.DARKGRAY);
+            gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 1, cornersize - 1);
+            gc.setFill(Color.BLACK);
+            gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 2, cornersize - 2);
+        }
+    }
     private static void handleGameOver() {
         // Update the high score in the database
         highScoreManager.addScore(currentPlayerUsername, score, "Standard");
@@ -259,11 +287,23 @@ public class StandardGameMode {
         // Reset the score for the next game
         score = 0;
 
-        // Show game over screen and ask if the player wants to play again
+        shakeTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                renderBackground(gc);
+                drawShakingSnake(gc);
+            }
+        };
+        shakeTimer.start();
+
         showGameOverScreen();
     }
 
     public static void resetGame() {
+
+        if (shakeTimer != null) {
+            shakeTimer.stop();
+        }
         // Reset game variables
         snake.clear();
         snake.add(new Corner(width / 2, height / 2));
@@ -299,5 +339,7 @@ public class StandardGameMode {
             mainStage.setScene(mainMenuScene);
         }
     }
+
+
 
 }

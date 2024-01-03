@@ -36,6 +36,7 @@ public class StandardGameMode {
     private static String currentPlayerUsername;
     private static Stage mainStage;
     private static Scene mainMenuScene;
+    private static final double LERP_RATE = 0.1;
 
     public enum Dir {
         left, right, up, down
@@ -50,7 +51,9 @@ public class StandardGameMode {
             this.y = y;
         }
     }
-
+    private static double lerp(double start, double end, double t) {
+        return start + t * (end - start);
+    }
     public static Scene createGameScene(HighScoreManager scoreManager, String username) {
         highScoreManager = scoreManager;
         currentPlayerUsername = username;
@@ -75,15 +78,15 @@ public class StandardGameMode {
 
                 if (lastTick == 0) {
                     lastTick = now;
-                    tick(gc);
+                    tick(gc, (now - lastTick) / 1e9);
                     return;
                 }
-
                 if (now - lastTick > 1000000000 / speed) {
                     lastTick = now;
-                    tick(gc);
+                    tick(gc, (now - lastTick) / 1e9);
                 }
             }
+
         }.start();
 
 
@@ -112,7 +115,7 @@ public class StandardGameMode {
     }
 
 
-    public static void tick(GraphicsContext gc) {
+    public static void tick(GraphicsContext gc, double deltaTime) {
 
         if (gameOver) {
             gc.setFill(Color.RED);
@@ -129,47 +132,69 @@ public class StandardGameMode {
             return;
         }
 
-        for (int i = snake.size() - 1; i >= 1; i--) {
+        Corner head = snake.get(0);
+        int newX = head.x;
+        int newY = head.y;
+
+        switch (direction) {
+            case up:
+                newY--;
+                break;
+            case down:
+                newY++;
+                break;
+            case left:
+                newX--;
+                break;
+            case right:
+                newX++;
+                break;
+        }
+
+
+
+        if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
+            gameOver = true;
+            return;
+        }
+
+        // Collision detection with itself
+        for (int i = 1; i < snake.size(); i++) {
+            Corner segment = snake.get(i);
+            if (newX == segment.x && newY == segment.y) {
+                gameOver = true;
+                return;
+            }
+        }
+        //moving body
+        for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).x = snake.get(i - 1).x;
             snake.get(i).y = snake.get(i - 1).y;
         }
 
-        switch (direction) {
-            case up:
-                snake.get(0).y--;
-                break;
-            case down:
-                snake.get(0).y++;
-                break;
-            case left:
-                snake.get(0).x--;
-                break;
-            case right:
-                snake.get(0).x++;
-                break;
-        }
+        head.x = newX;
+        head.y = newY;
 
-        Corner head = snake.get(0);
-        for (int i = 1; i < snake.size(); i++) {
-            if (head.x == snake.get(i).x && head.y == snake.get(i).y) {
-                gameOver = true;
-            }
-            if (head.x < 0 || head.x >= width || head.y < 0 || head.y >= height) {
-                gameOver = true;
-            }
-
-        }
-        // snake eats apple
-        if (appleX == snake.get(0).x && appleY == snake.get(0).y) {
+        // Check if snake eats the apple
+        if (appleX == head.x && appleY == head.y) {
             addNewSegment();
             newFood();
             score++;
         }
 
+        // Render everything
+        render(gc);
+    }
+    private static void render(GraphicsContext gc) {
+        // Clear the canvas
+        gc.clearRect(0, 0, width * cornersize, height * cornersize);
+
         // background
         String imageUrl = "https://img.freepik.com/vektoren-kostenlos/nahtloses-gruenes-grasmuster_1284-52275.jpg?size=626&ext=jpg";
         Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
         gc.drawImage(image,0,0);
+
+
 
 
         // score
@@ -274,7 +299,5 @@ public class StandardGameMode {
             mainStage.setScene(mainMenuScene);
         }
     }
-
-
 
 }

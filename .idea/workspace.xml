@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2024_23_58__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2024_23_58__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" afterDir="false" />
-    </list>
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Advanced fehlt, design verbessern und escape button" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,7 +145,7 @@
       <workItem from="1704162635706" duration="87000" />
       <workItem from="1704250437742" duration="642000" />
       <workItem from="1704251097690" duration="384000" />
-      <workItem from="1704280643126" duration="3529000" />
+      <workItem from="1704280643126" duration="3999000" />
     </task>
     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
       <option name="closed" value="true" />
@@ -201,7 +195,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704251604208</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat">
+      <option name="closed" value="true" />
+      <created>1704284267497</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704284267497</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Advanced fehlt, design verbessern und escape button">
+      <option name="closed" value="true" />
+      <created>1704284309587</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1704284309587</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +234,7 @@
     <MESSAGE value="Start game fehlt noch" />
     <MESSAGE value="Hauptspiel fehlt und aussehen der Schlange sowie Highscore" />
     <MESSAGE value="Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat" />
-    <option name="LAST_COMMIT_MESSAGE" value="Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat" />
+    <MESSAGE value="Advanced fehlt, design verbessern und escape button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Advanced fehlt, design verbessern und escape button" />
   </component>
 </project>

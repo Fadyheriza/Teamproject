@@ -89,16 +89,16 @@ public class StandardGameMode {
 
         c.setFocusTraversable(true);
         c.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if (key.getCode() == KeyCode.W) {
+            if (key.getCode() == KeyCode.W && direction != Dir.down) {
                 direction = Dir.up;
             }
-            if (key.getCode() == KeyCode.A) {
+            if (key.getCode() == KeyCode.A && direction != Dir.right) {
                 direction = Dir.left;
             }
-            if (key.getCode() == KeyCode.S) {
+            if (key.getCode() == KeyCode.S && direction != Dir.up) {
                 direction = Dir.down;
             }
-            if (key.getCode() == KeyCode.D) {
+            if (key.getCode() == KeyCode.D && direction != Dir.left) {
                 direction = Dir.right;
             }
         });

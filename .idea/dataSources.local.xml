@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-232.10227.8">
-    <data-source name="snakegame" uuid="bedeaf3f-4acc-4ed2-b981-e7c653cc1839">
+  <component name="dataSourceStorageLocal" created-in="IU-233.13135.103">
+    <data-source name="snakegame" uuid="0448b4e8-a5c4-49c4-b601-1104ed5e8f01">
       <database-info product="SQLite" version="3.43.0" jdbc-version="4.2" driver-name="SQLite JDBC" driver-version="3.43.0.0" dbms="SQLITE" exact-version="3.43.0" exact-driver-version="3.43">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>

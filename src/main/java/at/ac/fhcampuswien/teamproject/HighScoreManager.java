@@ -7,10 +7,11 @@ import java.util.List;
 
 public class HighScoreManager {
 
+    private static final String DB_URL = "jdbc:sqlite:data/snakegame.db";
+
     private final List<HighScore> highScores;
     private final int maxScores;
 
-    private static final String DB_URL = "jdbc:sqlite:snakegame.db";
 
     public HighScoreManager(int maxScores) {
         this.highScores = new ArrayList<>();

@@ -1,0 +1,111 @@
+Index: .idea/dataSources.xml
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+deleted file mode 100644
+--- a/.idea/dataSources.xml	(revision 73d79da3a22f25e73b21c96626054b577759a0d2)
++++ /dev/null	(revision 73d79da3a22f25e73b21c96626054b577759a0d2)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+-    <data-source source="LOCAL" name="snakegame" uuid="0448b4e8-a5c4-49c4-b601-1104ed5e8f01">
+-      <driver-ref>sqlite.xerial</driver-ref>
+-      <synchronize>true</synchronize>
+-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+-      <jdbc-url>jdbc:sqlite:C:\Users\kingp\IdeaProjects\Teamproject\Data\snakegame.db</jdbc-url>
+-      <jdbc-additional-properties>
+-        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+-      </jdbc-additional-properties>
+-      <working-dir>$ProjectFileDir$</working-dir>
+-      <libraries>
+-        <library>
+-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.43.0/org/xerial/sqlite-jdbc/3.43.0.0/sqlite-jdbc-3.43.0.0.jar</url>
+-        </library>
+-      </libraries>
+-    </data-source>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/dataSources.local.xml
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+deleted file mode 100644
+--- a/.idea/dataSources.local.xml	(revision 73d79da3a22f25e73b21c96626054b577759a0d2)
++++ /dev/null	(revision 73d79da3a22f25e73b21c96626054b577759a0d2)
+@@ -1,17 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-232.10227.8">
+-    <data-source name="snakegame" uuid="0448b4e8-a5c4-49c4-b601-1104ed5e8f01">
+-      <database-info product="SQLite" version="3.43.0" jdbc-version="4.2" driver-name="SQLite JDBC" driver-version="3.43.0.0" dbms="SQLITE" exact-version="3.43.0" exact-driver-version="3.43">
+-        <identifier-quote-string>&quot;</identifier-quote-string>
+-      </database-info>
+-      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+-      <auth-provider>no-auth</auth-provider>
+-      <schema-mapping>
+-        <introspection-scope>
+-          <node kind="schema" qname="@" />
+-        </introspection-scope>
+-      </schema-mapping>
+-    </data-source>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"88844b39-5d69-46f2-aec4-1a064bb15afa\" name=\"Changes\" comment=\"Advanced fehlt, design verbessern und escape button\">\r\n      <change beforePath=\"$PROJECT_DIR$/Data/snakegame.db\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Data/snakegame.db\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;history&quot;: [\r\n    {\r\n      &quot;assignee&quot;: &quot;ismxil02&quot;\r\n    }\r\n  ],\r\n  &quot;lastFilter&quot;: {\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"9a17095d-2dec-4a4b-8201-a3a3549f45cd\" />\r\n        <option name=\"url\" value=\"https://github.com/Fadyheriza/Teamproject.git\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n    <option name=\"showPreview\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2aMe0efBvRuXWfrrPMA5eoKs1qP\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;Application.SnakeGame.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.Build Teamproject.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.Teamproject [:SnakeGame.main()].executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;trusted.hosts&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\kingp\\IdeaProjects\\Teamproject\\Data\" />\r\n      <recent name=\"C:\\Users\\kingp\\IdeaProjects\\Teamproject\\src\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"at.ac.fhcampuswien.teamproject\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"SnakeGame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"corretto-17\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.ac.fhcampuswien.teamproject.SnakeGame\" />\r\n      <module name=\"Teamproject.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.ac.fhcampuswien.teamproject.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.SnakeGame\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.9-corretto-17.0.9-f644763e9732-ebaef533\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"88844b39-5d69-46f2-aec4-1a064bb15afa\" name=\"Changes\" comment=\"\" />\r\n      <created>1704132656448</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1704132656448</updated>\r\n      <workItem from=\"1704132657451\" duration=\"1902000\" />\r\n      <workItem from=\"1704142777542\" duration=\"3481000\" />\r\n      <workItem from=\"1704146735595\" duration=\"6805000\" />\r\n      <workItem from=\"1704162635706\" duration=\"87000\" />\r\n      <workItem from=\"1704250437742\" duration=\"642000\" />\r\n      <workItem from=\"1704251097690\" duration=\"384000\" />\r\n      <workItem from=\"1704280643126\" duration=\"3999000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Background check and 3 buttons check game window 500 x400\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704134555106</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704134555106</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Start game fehlt noch\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704144196530</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704144196530</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Start game fehlt noch\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704146587237</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704146587237</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Hauptspiel fehlt und aussehen der Schlange sowie Highscore\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704162394675</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704162394675</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704236001492</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704236001492</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704251604208</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704251604208</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704284267497</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704284267497</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Advanced fehlt, design verbessern und escape button\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704284309587</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704284309587</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Advanced fehlt, design verbessern und escape button\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704290349801</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704290349801</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"Background check and 3 buttons check game window 500 x400\" />\r\n    <MESSAGE value=\"Start game fehlt noch\" />\r\n    <MESSAGE value=\"Hauptspiel fehlt und aussehen der Schlange sowie Highscore\" />\r\n    <MESSAGE value=\"Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat\" />\r\n    <MESSAGE value=\"Advanced fehlt, design verbessern und escape button\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Advanced fehlt, design verbessern und escape button\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 73d79da3a22f25e73b21c96626054b577759a0d2)
++++ b/.idea/workspace.xml	(date 1704396700396)
+@@ -5,8 +5,11 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Advanced fehlt, design verbessern und escape button">
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0448b4e8-a5c4-49c4-b601-1104ed5e8f01/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -27,6 +30,7 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+   &quot;history&quot;: [
+@@ -149,6 +153,9 @@
+       <workItem from="1704250437742" duration="642000" />
+       <workItem from="1704251097690" duration="384000" />
+       <workItem from="1704280643126" duration="3999000" />
++      <workItem from="1704292288791" duration="251000" />
++      <workItem from="1704292711935" duration="1751000" />
++      <workItem from="1704392242069" duration="4072000" />
+     </task>
+     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
+       <option name="closed" value="true" />
+@@ -222,7 +229,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1704290349801</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="Advanced fehlt, design verbessern und escape button">
++      <option name="closed" value="true" />
++      <created>1704292309958</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1704292309958</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">

@@ -15,10 +15,11 @@ import javafx.scene.text.Font;
 import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class StandardGameMode {
     static int score = 0;
@@ -41,6 +42,8 @@ public class StandardGameMode {
     private static Canvas canvas;
     private static GraphicsContext gc;
     private static AnimationTimer shakeTimer;
+    static KeyCode lastKey = KeyCode.UNDEFINED;
+    static Queue<Dir> directionQueue = new LinkedList<>();
     private static void shakeSnake() {
         Random random = new Random();
         for (Corner c : snake) {
@@ -76,6 +79,7 @@ public class StandardGameMode {
         canvas = new Canvas(width * cornersize, height * cornersize);
         gc = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
+
 
         new AnimationTimer() {
             long lastTick = 0;
@@ -113,20 +117,40 @@ public class StandardGameMode {
         };
         shakeTimer.start();
 
+        canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+            if (isOppositeDirection(key.getCode(), lastKey)) {
+                // Ignorieren, wenn die Richtungen gegensätzlich sind
+                return;
+            }
+
+            if (key.getCode() == KeyCode.W && direction != Dir.down) {
+                direction = Dir.up;
+            } else if (key.getCode() == KeyCode.A && direction != Dir.right) {
+                direction = Dir.left;
+            } else if (key.getCode() == KeyCode.S && direction != Dir.up) {
+                direction = Dir.down;
+            } else if (key.getCode() == KeyCode.D && direction != Dir.left) {
+                direction = Dir.right;
+            }
+
+            lastKey = key.getCode(); // Aktualisieren des letzten Tastendrucks
+        });
+
 
         canvas.setFocusTraversable(true);
         canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+            Dir newDirection = null;
             if (key.getCode() == KeyCode.W && direction != Dir.down) {
-                direction = Dir.up;
+                newDirection = Dir.up;
+            } else if (key.getCode() == KeyCode.A && direction != Dir.right) {
+                newDirection = Dir.left;
+            } else if (key.getCode() == KeyCode.S && direction != Dir.up) {
+                newDirection = Dir.down;
+            } else if (key.getCode() == KeyCode.D && direction != Dir.left) {
+                newDirection = Dir.right;
             }
-            if (key.getCode() == KeyCode.A && direction != Dir.right) {
-                direction = Dir.left;
-            }
-            if (key.getCode() == KeyCode.S && direction != Dir.up) {
-                direction = Dir.down;
-            }
-            if (key.getCode() == KeyCode.D && direction != Dir.left) {
-                direction = Dir.right;
+            if (newDirection != null) {
+                directionQueue.add(newDirection);
             }
         });
 
@@ -138,8 +162,19 @@ public class StandardGameMode {
         return new Scene(root, width * cornersize, height * cornersize);
     }
 
+    private static boolean isOppositeDirection(KeyCode current, KeyCode last) {
+        if (current == KeyCode.W && last == KeyCode.S) return true;
+        if (current == KeyCode.S && last == KeyCode.W) return true;
+        if (current == KeyCode.A && last == KeyCode.D) return true;
+        if (current == KeyCode.D && last == KeyCode.A) return true;
+        return false;
+    }
 
     public static void tick(GraphicsContext gc, double deltaTime) {
+
+        if (!directionQueue.isEmpty()) {
+            direction = directionQueue.poll();
+        }
 
         Corner head = snake.get(0);
         int newX = head.x;

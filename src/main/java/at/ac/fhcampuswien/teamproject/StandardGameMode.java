@@ -1,11 +1,11 @@
 package at.ac.fhcampuswien.teamproject;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -83,7 +83,8 @@ public class StandardGameMode {
             @Override
             public void handle(long now) {
                 if (gameOver) {
-                    this.stop(); // Stop the animation timer
+                    // Stop the game loop when it's game over
+                    this.stop();
                     Platform.runLater(() -> handleGameOver()); // Handle game over on the JavaFX thread
                     return;
                 }
@@ -98,8 +99,19 @@ public class StandardGameMode {
                     tick(gc, (now - lastTick) / 1e9);
                 }
             }
-
         }.start();
+
+// Create a separate AnimationTimer for the shaking effect
+        shakeTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (gameOver) {
+                    // Continue shaking even when it's game over
+                    drawShakingSnake(gc);
+                }
+            }
+        };
+        shakeTimer.start();
 
 
         canvas.setFocusTraversable(true);
@@ -128,21 +140,6 @@ public class StandardGameMode {
 
 
     public static void tick(GraphicsContext gc, double deltaTime) {
-
-        if (gameOver) {
-            gc.setFill(Color.RED);
-            gc.setFont(new Font("", 100));
-            gc.fillText("LOSER!", 100, 250);
-            return;
-        }
-
-        if (snake.size() == width * height) {
-            gameOver = true;
-            gc.setFill(Color.GOLD);
-            gc.setFont(new Font("", 50));
-            gc.fillText("WINNER!", 100, 250);
-            return;
-        }
 
         Corner head = snake.get(0);
         int newX = head.x;
@@ -210,9 +207,6 @@ public class StandardGameMode {
     private static void render(GraphicsContext gc) {
         renderBackground(gc);
 
-
-
-
         // score
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("", 30));
@@ -267,7 +261,7 @@ public class StandardGameMode {
         Corner lastSegment = snake.get(snake.size() - 1);
         snake.add(new Corner(lastSegment.x, lastSegment.y));
     }
-    private static void drawShakingSnake(GraphicsContext gc) {
+    public static void drawShakingSnake(GraphicsContext gc) {
         Random random = new Random();
         for (Corner c : snake) {
             int shakeX = random.nextInt(3) - 1; // Zufällige Verschiebung um -1, 0 oder 1
@@ -278,26 +272,53 @@ public class StandardGameMode {
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 1, cornersize - 1);
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 2, cornersize - 2);
-        }
+        };
     }
-    private static void handleGameOver() {
-        // Update the high score in the database
-        highScoreManager.addScore(currentPlayerUsername, score, "Standard");
 
-        // Reset the score for the next game
+    public static void handleGameOver() {
+
+            // Continue shaking animation, but stop other game logic
+            gameOver = true;
+            // Create game over interface elements
+            VBox gameOverLayout = new VBox(20);
+            gameOverLayout.setAlignment(Pos.CENTER);
+            gameOverLayout.setPadding(new Insets(20, 50, 20, 50));
+            gameOverLayout.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+
+            // Display High Score and Username
+        Label highScoreLabel = new Label("High Score: " + score);
+        highScoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;-fx-background-color: white; -fx-text-fill: black; -fx-padding: 5;");
+
+        Label usernameLabel = new Label("Username: " + currentPlayerUsername);
+        usernameLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;-fx-background-color: white; -fx-text-fill: black; -fx-padding: 5;");
+
+
+        // Play Again Button
+        Button playAgainButton = new Button("Play Again");
+        playAgainButton.setOnAction(e -> {
+            resetGame();
+            Scene gameScene = createGameScene(highScoreManager, currentPlayerUsername);
+            mainStage.setScene(gameScene);
+        });
+
+        // Back to Main Menu Button
+        Button backButton = new Button("Back to Main Menu");
+        backButton.setOnAction(e -> mainStage.setScene(mainMenuScene));
+
+        gameOverLayout.getChildren().addAll(highScoreLabel, usernameLabel, playAgainButton, backButton);
+
+        // Overlay the game over layout on top of the game canvas
+        StackPane root = new StackPane();
+        root.getChildren().addAll(canvas, gameOverLayout); // canvas is your game canvas
+
+        // Set the new scene, which is essentially an overlay over the existing canvas
+        Scene gameOverScene = new Scene(root, canvas.getWidth(), canvas.getHeight());
+        mainStage.setScene(gameOverScene);
+
         score = 0;
 
-        shakeTimer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                renderBackground(gc);
-                drawShakingSnake(gc);
-            }
-        };
-        shakeTimer.start();
-
-        showGameOverScreen();
     }
+
 
     public static void resetGame() {
 
@@ -317,29 +338,5 @@ public class StandardGameMode {
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;
     }
-
-    private static void showGameOverScreen() {
-        Alert gameOverAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        gameOverAlert.setTitle("Game Over");
-        gameOverAlert.setHeaderText(null);
-        gameOverAlert.setContentText("Would you like to play again?");
-
-        ButtonType buttonTypeYes = new ButtonType("Yes");
-        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        gameOverAlert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
-        Optional<ButtonType> result = gameOverAlert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            resetGame();
-            Scene gameScene = createGameScene(highScoreManager, currentPlayerUsername);
-            mainStage.setScene(gameScene);
-        } else {
-            // Go back to the main menu
-            mainStage.setScene(mainMenuScene);
-        }
-    }
-
-
 
 }

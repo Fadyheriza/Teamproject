@@ -80,6 +80,8 @@ public class SnakeGame extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        StandardGameMode.setPrimaryStage(primaryStage);
+        StandardGameMode.setPauseGameHandler(this::showPauseScene);
 
         // Initialize MediaPlayer with a music link
         String musicUrl = "https://github.com/Fadyheriza/Music/raw/main/tv.mp3";
@@ -111,7 +113,9 @@ public class SnakeGame extends Application {
         mainMenuScene = new Scene(mainMenuLayout, 517, 412);
         StandardGameMode.setMainStage(primaryStage);
         StandardGameMode.setMainMenuScene(mainMenuScene);
+        StandardGameMode.setPauseGameHandler(this::showPauseScene); // Setzen des Pause-Handlers
     }
+
 
     private VBox createMainMenuLayout() {
         // Background setup
@@ -290,8 +294,33 @@ public class SnakeGame extends Application {
 
 
     }
+    private Scene createPauseScene() {
+        VBox layout = new VBox(20);
+        layout.setAlignment(Pos.CENTER);
 
+        Label pauseLabel = new Label("Game Paused");
+        pauseLabel.setFont(new Font("Arial", 24));
 
+        Button resumeButton = new Button("Resume Game");
+        resumeButton.setOnAction(e -> {
+            StandardGameMode.resumeGame();
+            Scene standardGameScene = StandardGameMode.createGameScene(standardModeHighScores, username);
+            primaryStage.setScene(standardGameScene);
+        });
+
+        Button mainMenuButton = new Button("Return to Main Menu");
+        mainMenuButton.setOnAction(e -> {
+            StandardGameMode.resetGame();
+
+            primaryStage.setScene(mainMenuScene);
+        });
+
+        layout.getChildren().addAll(pauseLabel, resumeButton, mainMenuButton);
+        return new Scene(layout, 300, 200);
+    }
+    public void showPauseScene() {
+        primaryStage.setScene(createPauseScene());
+    }
     public static void main(String[] args) {
         launch(args);
     }

@@ -44,6 +44,27 @@ public class StandardGameMode {
     private static AnimationTimer shakeTimer;
     static KeyCode lastKey = KeyCode.UNDEFINED;
     static Queue<Dir> directionQueue = new LinkedList<>();
+    static boolean isPaused = false;
+    private static Stage primaryStage;
+    private static Runnable pauseGameHandler;
+    private static AnimationTimer gameTimer;
+
+    public static void resumeGame() {
+        isPaused = false;
+        if (gameTimer == null) {
+            initializeGameTimer(); // Initialisieren Sie den Timer, falls er null ist
+        }
+        gameTimer.start(); // Starten Sie den Timer, um das Spiel fortzusetzen
+    }
+
+    public static void setPauseGameHandler(Runnable handler) {
+        pauseGameHandler = handler;
+    }
+
+    public static void setPrimaryStage(Stage stage) {
+        primaryStage = stage;
+    }
+
     private static void shakeSnake() {
         Random random = new Random();
         for (Corner c : snake) {
@@ -66,14 +87,15 @@ public class StandardGameMode {
             this.y = y;
         }
     }
+
     private static double lerp(double start, double end, double t) {
         return start + t * (end - start);
     }
+
     public static Scene createGameScene(HighScoreManager scoreManager, String username) {
         highScoreManager = scoreManager;
         currentPlayerUsername = username;
         newFood();
-
 
         Pane root = new Pane();
         canvas = new Canvas(width * cornersize, height * cornersize);
@@ -81,29 +103,35 @@ public class StandardGameMode {
         root.getChildren().add(canvas);
 
 
-        new AnimationTimer() {
-            long lastTick = 0;
+        if (gameTimer == null) {
+            gameTimer = new AnimationTimer() {
+                long lastTick = 0;
 
-            @Override
-            public void handle(long now) {
-                if (gameOver) {
-                    // Stop the game loop when it's game over
-                    this.stop();
-                    Platform.runLater(() -> handleGameOver()); // Handle game over on the JavaFX thread
-                    return;
-                }
+                @Override
+                public void handle(long now) {
+                    if (gameOver) {
+                        this.stop();
+                        Platform.runLater(() -> handleGameOver());
+                        return;
+                    }
 
-                if (lastTick == 0) {
-                    lastTick = now;
-                    tick(gc, (now - lastTick) / 1e9);
-                    return;
+                    if (isPaused) {
+                        return;
+                    }
+
+                    if (lastTick == 0) {
+                        lastTick = now;
+                        tick(gc, (now - lastTick) / 1e9);
+                        return;
+                    }
+                    if (now - lastTick > 1000000000 / speed) {
+                        lastTick = now;
+                        tick(gc, (now - lastTick) / 1e9);
+                    }
                 }
-                if (now - lastTick > 1000000000 / speed) {
-                    lastTick = now;
-                    tick(gc, (now - lastTick) / 1e9);
-                }
-            }
-        }.start();
+            };
+        }
+        gameTimer.start();
 
 // Create a separate AnimationTimer for the shaking effect
         shakeTimer = new AnimationTimer() {
@@ -132,8 +160,8 @@ public class StandardGameMode {
             } else if (key.getCode() == KeyCode.D && direction != Dir.left) {
                 direction = Dir.right;
             }
-
             lastKey = key.getCode(); // Aktualisieren des letzten Tastendrucks
+
         });
 
 
@@ -151,13 +179,20 @@ public class StandardGameMode {
             }
             if (newDirection != null) {
                 directionQueue.add(newDirection);
+
+            }
+            if (key.getCode() == KeyCode.ESCAPE) {
+                isPaused = !isPaused;
+                if (isPaused) {
+                    gameTimer.stop(); // Spiel pausieren
+                    if (pauseGameHandler != null) {
+                        pauseGameHandler.run();
+                    }
+                } else {
+                    resumeGame(); // Spiel fortsetzen
+                }
             }
         });
-
-        snake.clear();
-        snake.add(new Corner(width / 2, height / 2));
-        snake.add(new Corner(width / 2, height / 2));
-        snake.add(new Corner(width / 2, height / 2));
 
         return new Scene(root, width * cornersize, height * cornersize);
     }
@@ -171,7 +206,9 @@ public class StandardGameMode {
     }
 
     public static void tick(GraphicsContext gc, double deltaTime) {
-
+        if (isPaused) {
+            return;
+        }
         if (!directionQueue.isEmpty()) {
             direction = directionQueue.poll();
         }
@@ -194,7 +231,6 @@ public class StandardGameMode {
                 newX++;
                 break;
         }
-
 
 
         if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
@@ -229,6 +265,7 @@ public class StandardGameMode {
         // Render everything
         render(gc);
     }
+
     private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
@@ -288,6 +325,7 @@ public class StandardGameMode {
             }
         }
     }
+
     public static void setMainStage(Stage stage) {
         mainStage = stage;
     }
@@ -296,6 +334,7 @@ public class StandardGameMode {
         Corner lastSegment = snake.get(snake.size() - 1);
         snake.add(new Corner(lastSegment.x, lastSegment.y));
     }
+
     public static void drawShakingSnake(GraphicsContext gc) {
         Random random = new Random();
         for (Corner c : snake) {
@@ -307,20 +346,21 @@ public class StandardGameMode {
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 1, cornersize - 1);
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 2, cornersize - 2);
-        };
+        }
+        ;
     }
 
     public static void handleGameOver() {
 
-            // Continue shaking animation, but stop other game logic
-            gameOver = true;
-            // Create game over interface elements
-            VBox gameOverLayout = new VBox(20);
-            gameOverLayout.setAlignment(Pos.CENTER);
-            gameOverLayout.setPadding(new Insets(20, 50, 20, 50));
-            gameOverLayout.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+        // Continue shaking animation, but stop other game logic
+        gameOver = true;
+        // Create game over interface elements
+        VBox gameOverLayout = new VBox(20);
+        gameOverLayout.setAlignment(Pos.CENTER);
+        gameOverLayout.setPadding(new Insets(20, 50, 20, 50));
+        gameOverLayout.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
 
-            // Display High Score and Username
+        // Display High Score and Username
         Label highScoreLabel = new Label("High Score: " + score);
         highScoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;-fx-background-color: white; -fx-text-fill: black; -fx-padding: 5;");
 
@@ -354,24 +394,43 @@ public class StandardGameMode {
 
     }
 
-
     public static void resetGame() {
-
-        if (shakeTimer != null) {
-            shakeTimer.stop();
-        }
-        // Reset game variables
+        score = 0;
+        direction = Dir.left;
+        gameOver = false;
         snake.clear();
         snake.add(new Corner(width / 2, height / 2));
         snake.add(new Corner(width / 2, height / 2));
         snake.add(new Corner(width / 2, height / 2));
-        direction = Dir.left;
-        gameOver = false;
         newFood();
+        if (gameTimer != null) {
+            gameTimer.start(); // Starten Sie den Timer erneut
+        }
     }
+
 
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;
+    }
+
+
+    private static void initializeGameTimer() {
+        gameTimer = new AnimationTimer() {
+            long lastTick = 0;
+
+            @Override
+            public void handle(long now) {
+                if (lastTick == 0) {
+                    lastTick = now;
+                    tick(gc, (now - lastTick) / 1e9);
+                    return;
+                }
+                if (now - lastTick > 1000000000 / speed) {
+                    lastTick = now;
+                    tick(gc, (now - lastTick) / 1e9);
+                }
+            }
+        };
     }
 
 }

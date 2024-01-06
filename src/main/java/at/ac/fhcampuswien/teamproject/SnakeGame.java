@@ -187,8 +187,13 @@ public class SnakeGame extends Application {
         Button advancedModeButton = new Button("Advanced Mode");
         advancedModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         advancedModeButton.setOnAction(e -> {
+            Scene advancedGameMode = AdvancedGameMode.createGameScene(advancedModeHighScores, username);
+            primaryStage.setScene(advancedGameMode);
             System.out.println("High Score Button Pressed2");
+            AdvancedGameMode.setMainStage(primaryStage);
+
         });
+
 
         // Advanced High Score Button
         Button advancedHighScoreButton = new Button("Advanced High Score");

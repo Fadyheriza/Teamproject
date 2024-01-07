@@ -34,10 +34,6 @@ To run the game, you'll need to have Java and JavaFX installed on your system. F
 
 We welcome contributions! If you're interested in helping improve this game, please feel free to submit issues and pull requests.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
 ## Acknowledgments
 
 - Background music sourced from [Fadyheriza's GitHub](https://github.com/Fadyheriza/Music).

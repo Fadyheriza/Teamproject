@@ -1,26 +1,30 @@
 package at.ac.fhcampuswien.teamproject;
 
-import javafx.animation.AnimationTimer;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.animation.AnimationTimer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class AdvancedGameMode {
     static int score = 0;
@@ -54,6 +58,8 @@ public class AdvancedGameMode {
     private static int currentAppleType = 0;
     private static Timeline speedBoostTimer;
     private static boolean isPoisoned = false;
+    private static long poisonEndTime = 0;
+
     private static void shakeSnake() {
         Random random = new Random();
         for (Corner c : snake) {
@@ -249,6 +255,7 @@ public class AdvancedGameMode {
         if (isPaused) {
             return; // Skip updating game logic if the game is paused
         }
+
         if (!directionQueue.isEmpty()) {
             direction = directionQueue.poll();
         }
@@ -257,7 +264,30 @@ public class AdvancedGameMode {
         int newX = head.x;
         int newY = head.y;
 
-        if (!isPoisoned) {
+        if (isPoisoned) {
+            // Invert controls if poisoned
+            switch (direction) {
+                case up:
+                    newY--;
+                    break;
+                case down:
+                    newY++;
+                    break;
+                case left:
+                    newX++;
+                    break;
+                case right:
+                    newX--;
+                    break;
+            }
+
+            // Check for collision with walls after inverting controls
+            if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
+                gameOver = true;
+                isPoisoned = false; // Reset poison effect after game over
+                return;
+            }
+        } else {
             // Only update snake position if not poisoned
             switch (direction) {
                 case up:
@@ -273,30 +303,16 @@ public class AdvancedGameMode {
                     newX++;
                     break;
             }
-        } else {
-            // Invert controls if poisoned
-            switch (direction) {
-                case up:
-                    newY++;
-                    break;
-                case down:
-                    newY--;
-                    break;
-                case left:
-                    newX++;
-                    break;
-                case right:
-                    newX--;
-                    break;
-            }
-        }
 
-        if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
-            if (!isPoisoned) {
-                // Only end the game if not poisoned
-                gameOver = true;
+            // Collision detection with walls
+            if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
+                // Check if the snake hits the wall
+                if (!isPoisoned) {
+                    // Only end the game if not poisoned
+                    gameOver = true;
+                }
+                return;
             }
-            return;
         }
 
         // Collision detection with itself
@@ -324,10 +340,6 @@ public class AdvancedGameMode {
         if (appleX == head.x && appleY == head.y) {
             int previousScore = score;
 
-            addNewSegment();
-
-            newFood();
-
             switch (currentAppleType) {
                 case 0: // RED_APPLE
                     System.out.println("RED_APPLE");
@@ -340,7 +352,7 @@ public class AdvancedGameMode {
                     break;
                 case BLUE_APPLE:
                     System.out.println("BLUE_APPLE");
-                    score += 3; // Adjust based on your game logic
+                    score += 3;
                     break;
                 case YELLOW_APPLE:
                     System.out.println("YELLOW_APPLE");
@@ -355,11 +367,17 @@ public class AdvancedGameMode {
             if (score > previousScore) {
                 speed = Math.min(10, speed + snake.size() / 5); // Adjust the speed increment as needed
             }
+
+            addNewSegment(); // Add the new segment after updating score and apple type
+            newFood(); // Generate a new food after updating score
         }
 
         // Render everything
         render(gc);
     }
+
+
+
 
     private static void startSpeedBoostTimer() {
         int originalSpeed = speed; // Save the original speed
@@ -392,7 +410,7 @@ public class AdvancedGameMode {
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
 
         // background
-        String imageUrl = "https://img.freepik.com/vektoren-kostenlos/nahtloses-gruenes-grasmuster_1284-52275.jpg?size=626&ext=jpg";
+        String imageUrl = "bg.png";
         Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
         gc.drawImage(image, 0, 0);
     }
@@ -430,6 +448,7 @@ public class AdvancedGameMode {
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 2, cornersize - 2);
         }
+
     }
 
 
@@ -501,6 +520,7 @@ public class AdvancedGameMode {
         Label usernameLabel = new Label("Username: " + currentPlayerUsername);
         usernameLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;-fx-background-color: white; -fx-text-fill: black; -fx-padding: 5;");
 
+        highScoreManager.addScore(currentPlayerUsername, score, "Advanced");
 
         // Play Again Button
         Button playAgainButton = new Button("Play Again");
@@ -512,8 +532,10 @@ public class AdvancedGameMode {
 
         // Back to Main Menu Button
         Button backButton = new Button("Back to Main Menu");
-        backButton.setOnAction(e -> mainStage.setScene(mainMenuScene));
-
+        backButton.setOnAction(e -> {
+            resetGame();
+            mainStage.setScene(mainMenuScene);
+        });
         gameOverLayout.getChildren().addAll(highScoreLabel, usernameLabel, playAgainButton, backButton);
 
         // Overlay the game over layout on top of the game canvas
@@ -530,6 +552,7 @@ public class AdvancedGameMode {
 
 
     public static void resetGame() {
+        speed=5;
         if (gameLoop != null) {
             gameLoop.stop();
         }
@@ -544,13 +567,18 @@ public class AdvancedGameMode {
         direction = Dir.left;
         gameOver = false;
         newFood();
+        score=0;
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
     }
 
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;
     }
+    public static void setMainStage(Scene scene) {
+        mainMenuScene = scene;
+    }
     public static void setMainStage(Stage stage) {
         mainStage = stage;
     }
-
 }

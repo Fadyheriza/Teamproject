@@ -36,7 +36,7 @@ public class SnakeGame extends Application {
         layout.setAlignment(Pos.CENTER);
 
         // Background setup (same as other scenes)
-        String imageUrl = "https://html5-games.io/data/image/snakelogo.png";
+        String imageUrl = "snakelogo.png";
         Image backgroundImage = new Image(imageUrl);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         layout.setBackground(new Background(background));
@@ -82,7 +82,7 @@ public class SnakeGame extends Application {
         this.primaryStage = primaryStage;
 
         // Initialize MediaPlayer with a music link
-        String musicUrl = "https://github.com/Fadyheriza/Music/raw/main/tv.mp3";
+        String musicUrl = SnakeGame.class.getResource("/tv.mp3").toString();
         Media sound = new Media(musicUrl);
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -111,12 +111,14 @@ public class SnakeGame extends Application {
         mainMenuScene = new Scene(mainMenuLayout, 517, 412);
         StandardGameMode.setMainStage(primaryStage);
         StandardGameMode.setMainMenuScene(mainMenuScene);
+        AdvancedGameMode.setMainStage(primaryStage);
+        AdvancedGameMode.setMainMenuScene(mainMenuScene);
     }
 
 
     private VBox createMainMenuLayout() {
         // Background setup
-        String imageUrl = "https://html5-games.io/data/image/snakelogo.png";
+        String imageUrl = "snakelogo.png";
         Image backgroundImage = new Image(imageUrl);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background backgroundLayout = new Background(background);
@@ -130,6 +132,7 @@ public class SnakeGame extends Application {
         startGameButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         startGameButton.setOnAction(e -> {
             StandardGameMode.resetGame(); // Reset the game state
+
             VBox gameModeLayout = createGameModeLayout();
             gameModeScene = new Scene(gameModeLayout, 517, 412);
             primaryStage.setScene(gameModeScene);
@@ -160,7 +163,7 @@ public class SnakeGame extends Application {
         layout.setFillWidth(true); // Ensure the VBox fills its width
 
         // Background setup
-        String imageUrl = "https://html5-games.io/data/image/snakelogo.png";
+        String imageUrl = "snakelogo.png";
         Image backgroundImage = new Image(imageUrl);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background backgroundLayout = new Background(background);
@@ -189,11 +192,7 @@ public class SnakeGame extends Application {
         advancedModeButton.setOnAction(e -> {
             Scene advancedGameMode = AdvancedGameMode.createGameScene(advancedModeHighScores, username);
             primaryStage.setScene(advancedGameMode);
-            System.out.println("High Score Button Pressed2");
-            AdvancedGameMode.setMainStage(primaryStage);
-
         });
-
 
         // Advanced High Score Button
         Button advancedHighScoreButton = new Button("Advanced High Score");
@@ -253,7 +252,7 @@ public class SnakeGame extends Application {
         layout.setPadding(new Insets(20, 50, 20, 50));
 
         // Background setup
-        String imageUrl = "https://www.shutterstock.com/image-vector/setting-maintenance-icon-260nw-1053800327.jpg";
+        String imageUrl = "settinglogo.png";
         Image backgroundImage = new Image(imageUrl);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background backgroundLayout = new Background(background);

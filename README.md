@@ -19,15 +19,12 @@ To run the game, you'll need to have Java and JavaFX installed on your system. F
 
 ## Known Bugs
 
-- **Advanced Mode Issues:** In advanced mode, only the 'Continue' button functions properly. Other buttons, including 'Play Again' after dying, may not respond as expected.
-- **Score Tracking Bug:** The score display does not function correctly, and the high score feature is also non-operational.
-- **Snake Speed:** The snake's speed in the game is excessively fast, which might affect gameplay.
-- **High Score Functionality:** The high score tracking is not working as intended.
+- **Advanced Mode Issues
 
 ## Areas for Improvement
 
 - **Snake Appearance:** The visual design of the snake needs enhancement to improve the overall aesthetic of the game.
-- **Bug Fixes:** The aforementioned bugs, particularly in the advanced mode and score tracking, require immediate attention.
+- **Bug Fixes:** The aforementioned bugs, particularly in the advanced mode require immediate attention.
 - **Gameplay Balancing:** Adjusting the snake's speed for a more enjoyable gameplay experience.
 
 ## Contributing

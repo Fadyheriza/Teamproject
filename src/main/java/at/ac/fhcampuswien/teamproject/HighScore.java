@@ -1,9 +1,8 @@
 package at.ac.fhcampuswien.teamproject;
 
-import java.io.Serializable;
 
 
-public class HighScore implements Comparable<HighScore>, Serializable  {
+public class HighScore implements Comparable<HighScore>{
     private final String username;
     private final int score;
 

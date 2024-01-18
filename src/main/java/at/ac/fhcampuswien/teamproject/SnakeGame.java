@@ -36,9 +36,22 @@ public class SnakeGame extends Application {
         layout.setAlignment(Pos.CENTER);
 
         // Background setup (same as other scenes)
-        String imageUrl = "snakelogo.png";
-        Image backgroundImage = new Image(imageUrl);
-        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Image backgroundImage;
+        try {
+            String imageUrl = "snakelogo.png";
+            backgroundImage = new Image(imageUrl);
+        } catch (Exception e) {
+            System.out.println("Error loading image: " + e.getMessage());
+            backgroundImage = null;
+        }
+
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT
+        );
         layout.setBackground(new Background(background));
 
         // Username Input Field
@@ -82,11 +95,16 @@ public class SnakeGame extends Application {
         this.primaryStage = primaryStage;
 
         // Initialize MediaPlayer with a music link
-        String musicUrl = SnakeGame.class.getResource("/tv.mp3").toString();
-        Media sound = new Media(musicUrl);
-        mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        try {
+            String musicUrl = SnakeGame.class.getResource("/tv.mp3").toString();
+            Media sound = new Media(musicUrl);
+            mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        } catch (Exception e) {
+            System.out.println("Error loading sound: " + e.getMessage());
+            // Optionally, handle the absence of sound
+        }
 
         // Set up the initial scene to the username input scene
         VBox usernameInputLayout = createUsernameInputLayout();

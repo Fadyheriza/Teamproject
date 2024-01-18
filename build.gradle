@@ -25,12 +25,13 @@ tasks.withType(JavaCompile) {
 }
 
 application {
+
   mainModule = 'at.ac.fhcampuswien.teamproject'
-  mainClass = 'at.ac.fhcampuswien.teamproject.HelloApplication'
+  mainClass = 'at.ac.fhcampuswien.teamproject.SnakeGame'
 }
 
 javafx {
-  version = '17'  // Adjusted to a stable JavaFX version compatible with Java 17
+  version = '17'
   modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
 }
 

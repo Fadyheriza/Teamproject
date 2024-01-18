@@ -29,6 +29,9 @@ public class SnakeGame extends Application {
     private Label usernameLabel;
     private HighScoreManager standardModeHighScores = new HighScoreManager(5);
     private HighScoreManager advancedModeHighScores = new HighScoreManager(5);
+    String imageUrl = SnakeGame.class.getResource("/icon.png").toExternalForm();
+    Image iconImage = new Image(imageUrl);
+
 
 
     private VBox createUsernameInputLayout() {
@@ -108,7 +111,12 @@ public class SnakeGame extends Application {
             System.out.println("Error loading sound: " + e.getMessage());
             // Optionally, handle the absence of sound
         }
+        // Load the icon image from resources
+        String imageUrl = SnakeGame.class.getResource("/icon.png").toExternalForm();
+        Image iconImage = new Image(imageUrl);
 
+        // Set the icon for the primaryStage
+        primaryStage.getIcons().add(iconImage);
         // Set up the initial scene to the username input scene
         VBox usernameInputLayout = createUsernameInputLayout();
         usernameInputScene = new Scene(usernameInputLayout, 517, 412);
@@ -314,6 +322,7 @@ public class SnakeGame extends Application {
 
         layout.getChildren().addAll(volumeSlider, muteCheckbox, backButton);
         return layout;
+
 
 
     }

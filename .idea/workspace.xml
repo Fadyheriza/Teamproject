@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="design verbessern paar sachen vom review verbessert">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,6 +113,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kingp\IdeaProjects\Teamproject\src\main\resources" />
       <recent name="C:\Users\kingp\IdeaProjects\Teamproject\Data" />
       <recent name="C:\Users\kingp\IdeaProjects\Teamproject\src" />
     </key>
@@ -191,7 +192,7 @@
       <workItem from="1704894035483" duration="2023000" />
       <workItem from="1705418027403" duration="706000" />
       <workItem from="1705428779409" duration="11000" />
-      <workItem from="1705607909723" duration="5788000" />
+      <workItem from="1705607909723" duration="6424000" />
     </task>
     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
       <option name="closed" value="true" />
@@ -289,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705611981232</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="design verbessern paar sachen vom review verbessert">
+      <option name="closed" value="true" />
+      <created>1705613915294</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705613915294</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

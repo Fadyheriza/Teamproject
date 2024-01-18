@@ -111,6 +111,7 @@ public class SnakeGame extends Application {
             System.out.println("Error loading sound: " + e.getMessage());
             // Optionally, handle the absence of sound
         }
+
         // Load the icon image from resources
         String imageUrl = SnakeGame.class.getResource("/icon.png").toExternalForm();
         Image iconImage = new Image(imageUrl);

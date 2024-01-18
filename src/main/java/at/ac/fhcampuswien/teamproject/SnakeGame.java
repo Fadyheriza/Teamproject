@@ -57,6 +57,8 @@ public class SnakeGame extends Application {
         // Username Input Field
         TextField usernameField = new TextField();
         usernameField.setPromptText("Enter Username");
+        usernameField.setPrefWidth(200);
+        usernameField.setMaxWidth(200);
 
         // Instruction Label
         Label instructionLabel = new Label("Enter your username (12 characters max, letters and numbers only)");
@@ -69,7 +71,8 @@ public class SnakeGame extends Application {
                 usernameLabel.setText("Username: " + username); // Update the username label
                 primaryStage.setScene(mainMenuScene);
             } else {
-                instructionLabel.setText("Invalid username. Please try again.");
+                instructionLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black; -fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0);");
+                instructionLabel.setText("Invalid username. Please try again.\n(12 characters max, letters and numbers only)");
             }
         };
 
@@ -245,6 +248,7 @@ public class SnakeGame extends Application {
         titleLabel.setFont(new Font("Arial", 20));
 
         ListView<String> highScoreList = new ListView<>();
+        highScoreList.setPrefHeight(5*24);
         List<HighScore> highScores = (mode.equals("Standard")) ? standardModeHighScores.getHighScores(mode) : advancedModeHighScores.getHighScores(mode);
 
         // Process and display high scores with rankings
@@ -260,13 +264,13 @@ public class SnakeGame extends Application {
 
         layout.getChildren().addAll(titleLabel, highScoreList, backButton);
 
-        return new Scene(layout, 300, 400);
+        return new Scene(layout, 517, 412);
     }
 
 
     private VBox createSettingsLayout() {
         VBox layout = new VBox(20);
-        layout.setAlignment(Pos.CENTER);
+        layout.setAlignment(Pos.TOP_CENTER);
         layout.setPadding(new Insets(20, 50, 20, 50));
 
         // Background setup
@@ -281,18 +285,18 @@ public class SnakeGame extends Application {
         volumeSlider.setShowTickLabels(true);
         volumeSlider.setShowTickMarks(true);
         volumeSlider.setStyle(
-                "-fx-font-size: 25px; " +
+                "-fx-font-size: 25px; " + //  font size for the numbers
                         "-fx-font-weight: bold; " +
-                        "-fx-padding: 18px; " +
-                        "-fx-slider-track-color: blue; " + // Color of the track
-                        "-fx-thumb-color: red; " + // Color of the thumb
-                        "-fx-text-fill: black; " +
+                        "-fx-padding: 30px; " + //  padding
+                        "-fx-slider-track-color: white; " + //  track color
+                        "-fx-thumb-color: red; " + //  thumb color t
+                        "-fx-text-fill: red; " + // Text color
                         "-fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0); " +
-                        "-fx-control-inner-background: orange; " + // Background of the slider
-                        "-fx-stroke: green; " + // Border color of the thumb
-                        "-fx-stroke-width: 2px; " + // Border width of the thumb
-                        "-fx-pref-width: 200px; " + // Preferred width of the slider
-                        "-fx-pref-height: 30px; " // Preferred height of the slider
+                        "-fx-control-inner-background: #00000055; " + // Semi-transparent black background
+                        "-fx-stroke: black; " + //  color for the thumb
+                        "-fx-stroke-width: 1px; " + // border width of the thumb
+                        "-fx-pref-width: 200px; " + //  width of the slider
+                        "-fx-pref-height: 5px; " //  height of the slider
         );
         volumeSlider.setMinWidth(300);
         volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
@@ -313,6 +317,13 @@ public class SnakeGame extends Application {
 
 
     }
+    @Override
+    public void stop() {
+        // Close the HighScoreManager connections
+        standardModeHighScores.closeConnection();
+        advancedModeHighScores.closeConnection();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

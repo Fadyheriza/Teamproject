@@ -79,6 +79,11 @@ public class HighScoreManager {
         }
         return scores;
     }
+    @Override
+    protected void finalize() throws Throwable {
+        closeConnection();
+        super.finalize();
+    }
 
     public void closeConnection() {
         if (conn != null) {

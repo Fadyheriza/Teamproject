@@ -41,10 +41,30 @@ public class SettingsScene {
 
         // Volume Slider
         Slider volumeSlider = new Slider(0, 100, 50);
-        setupVolumeSlider(volumeSlider, snakeGame);
+        volumeSlider.setShowTickLabels(true);
+        volumeSlider.setShowTickMarks(true);
+        volumeSlider.setStyle(
+                "-fx-font-size: 25px; " + //  font size for the numbers
+                        "-fx-font-weight: bold; " +
+                        "-fx-padding: 30px; " + //  padding
+                        "-fx-slider-track-color: white; " + //  track color
+                        "-fx-thumb-color: red; " + //  thumb color t
+                        "-fx-text-fill: red; " + // Text color
+                        "-fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0); " +
+                        "-fx-control-inner-background: #00000055; " + // Semi-transparent black background
+                        "-fx-stroke: black; " + //  color for the thumb
+                        "-fx-stroke-width: 1px; " + // border width of the thumb
+                        "-fx-pref-width: 200px; " + //  width of the slider
+                        "-fx-pref-height: 5px; " //  height of the slider
+        );
+        volumeSlider.setMinWidth(300);
+        volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
+            snakeGame.mediaPlayer.setVolume(newValue.doubleValue() / 100.0);
+        });
 
         // Mute Checkbox
         CheckBox muteCheckbox = setupMuteCheckbox(snakeGame);
+        muteCheckbox.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10px; -fx-text-fill: black; -fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0);");
 
         // Back Button
         Button backButton = setupBackButton(snakeGame);

@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="design verbessern paar sachen vom review verbessert">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Design und Advanced fehlt sonst alles da">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/GameModeScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/GameModeScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/MainMenuScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/MainMenuScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/SettingsScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/SettingsScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +196,8 @@
       <workItem from="1705778614885" duration="200000" />
       <workItem from="1705786807087" duration="21524000" />
       <workItem from="1705867516995" duration="3806000" />
-      <workItem from="1705872223142" duration="2126000" />
+      <workItem from="1705872223142" duration="2454000" />
+      <workItem from="1705875794651" duration="361000" />
     </task>
     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
       <option name="closed" value="true" />
@@ -323,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705872528848</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Design und Advanced fehlt sonst alles da">
+      <option name="closed" value="true" />
+      <created>1705875532116</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1705875532116</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,6 +352,7 @@
     <MESSAGE value="Advanced fehlt, design verbessern und das man wieder zurück gehehn kann nachdem man verloren hat" />
     <MESSAGE value="Advanced fehlt, design verbessern und escape button" />
     <MESSAGE value="design verbessern paar sachen vom review verbessert" />
-    <option name="LAST_COMMIT_MESSAGE" value="design verbessern paar sachen vom review verbessert" />
+    <MESSAGE value="Design und Advanced fehlt sonst alles da" />
+    <option name="LAST_COMMIT_MESSAGE" value="Design und Advanced fehlt sonst alles da" />
   </component>
 </project>

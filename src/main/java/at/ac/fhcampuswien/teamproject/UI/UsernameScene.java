@@ -84,7 +84,7 @@ public class UsernameScene {
     private Label setupInstructionLabel() {
         // Configuration of the instruction label
         Label instructionLabel = new Label("Enter your username (12 characters max, letters and numbers only)");
-        // Styling code omitted for brevity
+        instructionLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: black; -fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0);");
         return instructionLabel;
     }
 
@@ -96,6 +96,7 @@ public class UsernameScene {
                 snakeGame.usernameLabel.setText("Username: " + username); // Update the username label
                 snakeGame.primaryStage.setScene(snakeGame.mainMenuScene.scene);
             } else {
+                instructionLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black; -fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0);");
                 instructionLabel.setText("Invalid username. Please try again.\n(12 characters max, letters and numbers only)");
             }
         };

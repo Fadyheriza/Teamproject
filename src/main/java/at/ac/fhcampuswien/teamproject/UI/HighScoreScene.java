@@ -1,4 +1,5 @@
 package at.ac.fhcampuswien.teamproject.UI;
+
 import at.ac.fhcampuswien.teamproject.HighScore;
 import at.ac.fhcampuswien.teamproject.SnakeGame;
 import javafx.geometry.Insets;
@@ -12,6 +13,10 @@ import javafx.scene.text.Font;
 
 import java.util.List;
 
+/**
+ * HighScoreScene class provides the UI to display the high scores in the Snake game.
+ * It uses JavaFX for rendering the UI components.
+ */
 public class HighScoreScene {
     public Scene scene;
     private VBox layout = new VBox(10);
@@ -19,25 +24,36 @@ public class HighScoreScene {
     private ListView<String> highScoreList;
     private SnakeGame snakeGame;
 
+    /**
+     * Sets up the user interface for displaying high scores, including a title, a list of high scores, and a back button.
+     *
+     * @param snakeGame Instance of the SnakeGame, used to interact with other components of the game.
+     */
     public HighScoreScene(SnakeGame snakeGame) {
-            this.snakeGame= snakeGame;
-            layout.setAlignment(Pos.CENTER);
-            layout.setPadding(new Insets(10));
+        this.snakeGame = snakeGame;
+        layout.setAlignment(Pos.CENTER);
+        layout.setPadding(new Insets(10));
 
-            titleLabel = new Label();
-            titleLabel.setFont(new Font("Arial", 20));
+        titleLabel = new Label();
+        titleLabel.setFont(new Font("Arial", 20));
 
-            highScoreList = new ListView<>();
-            highScoreList.setPrefHeight(5*24);
+        highScoreList = new ListView<>();
+        highScoreList.setPrefHeight(5 * 24);
 
-            Button backButton = new Button("Back");
-            backButton.setOnAction(e -> snakeGame.primaryStage.setScene(snakeGame.gameModeScene.scene)); // Go back to the game mode selection scene
+        Button backButton = new Button("Back");
+        backButton.setOnAction(e -> snakeGame.primaryStage.setScene(snakeGame.gameModeScene.scene)); // Go back to the game mode selection scene
 
-            layout.getChildren().addAll(titleLabel, highScoreList, backButton);
-            scene = new Scene(layout, 517,412);
-        }
+        layout.getChildren().addAll(titleLabel, highScoreList, backButton);
+        scene = new Scene(layout, 517, 412);
+    }
 
-    public void setmode(String mode){
+    /**
+     * Updates the UI with the high scores for the specified game mode.
+     * Clears the current high score list and adds new entries based on the provided mode.
+     *
+     * @param mode The game mode for which high scores are to be displayed.
+     */
+    public void setmode(String mode) {
         titleLabel.setText(mode + " High Scores");
         highScoreList.getItems().clear(); // Clear existing items
 

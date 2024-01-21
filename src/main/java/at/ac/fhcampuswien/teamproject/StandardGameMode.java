@@ -13,12 +13,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.animation.AnimationTimer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import javafx.scene.image.Image;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -68,9 +71,11 @@ public class StandardGameMode {
             this.y = y;
         }
     }
+
     private static double lerp(double start, double end, double t) {
         return start + t * (end - start);
     }
+
     private static Scene currentGameScene;
 
     public static void handlePauseGame() {
@@ -104,7 +109,6 @@ public class StandardGameMode {
             render(gc); // Explicitly call render to update the screen
         }
     }
-
 
 
     private static VBox createPauseMenuLayout() {
@@ -270,7 +274,6 @@ public class StandardGameMode {
         }
 
 
-
         if (newX < 0 || newX >= width || newY < 1 || newY >= height) { // Start checking from y = 1
             gameOver = true;
             return;
@@ -303,6 +306,7 @@ public class StandardGameMode {
         // Render everything
         render(gc);
     }
+
     private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
@@ -349,7 +353,7 @@ public class StandardGameMode {
     // food random places
     public static void newFood() {
         while (true) {
-            appleX = rand.nextInt(width );
+            appleX = rand.nextInt(width);
             appleY = rand.nextInt(height - 1) + 1; // Verhindert, dass der Apfel in der ersten Zeile (y=0) erscheint
 
             boolean isOccupied = false;
@@ -370,6 +374,7 @@ public class StandardGameMode {
             }
         }
     }
+
     public static void setMainStage(Stage stage) {
         mainStage = stage;
     }
@@ -378,6 +383,7 @@ public class StandardGameMode {
         Corner lastSegment = snake.get(snake.size() - 1);
         snake.add(new Corner(lastSegment.x, lastSegment.y));
     }
+
     public static void drawShakingSnake(GraphicsContext gc) {
         Random random = new Random();
         for (Corner c : snake) {
@@ -389,7 +395,8 @@ public class StandardGameMode {
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 1, cornersize - 1);
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 2, cornersize - 2);
-        };
+        }
+        ;
     }
 
     public static void handleGameOver() {
@@ -397,7 +404,7 @@ public class StandardGameMode {
         if (gameLoop != null) {
             gameLoop.stop();
         }
-        String gameMode = "Standard" ;
+        String gameMode = "Standard";
         highScoreManager.addScore(currentPlayerUsername, score, gameMode);
         // Create game over interface elements
         VBox gameOverLayout = new VBox(20);

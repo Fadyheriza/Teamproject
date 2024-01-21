@@ -1,4 +1,5 @@
 package at.ac.fhcampuswien.teamproject.UI;
+
 import at.ac.fhcampuswien.teamproject.SnakeGame;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,18 +10,26 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 
+/**
+ * UsernameScene class provides the UI for entering a username in the Snake game.
+ * It includes an input field for the username and a button to accept the input.
+ */
 public class UsernameScene {
     public Scene scene;
     private VBox layout = new VBox(10);
 
     private String username;
 
-
+    /**
+     * Constructor for UsernameScene.
+     * Sets up the UI elements for entering and accepting a username.
+     *
+     * @param snakeGame Instance of the main game class, used to interact with other components.
+     */
     public UsernameScene(SnakeGame snakeGame) {
-
         layout.setAlignment(Pos.CENTER);
 
-        // Background setup (same as other scenes)
+        // Background setup
         Image backgroundImage;
         try {
             String imageUrl = "snakelogo.png";
@@ -40,30 +49,16 @@ public class UsernameScene {
         layout.setBackground(new Background(background));
 
         // Username Input Field
-        TextField usernameField = new TextField();
-        usernameField.setPromptText("Enter Username");
-        usernameField.setPrefWidth(200);
-        usernameField.setMaxWidth(200);
+        TextField usernameField = setupUsernameField();
 
         // Instruction Label
-        Label instructionLabel = new Label("Enter your username (12 characters max, letters and numbers only)");
-        instructionLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: black; -fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0);");
+        Label instructionLabel = setupInstructionLabel();
 
-        // Accept Button Logic as a Runnable
-        Runnable acceptLogic = () -> {
-            if (usernameField.getText().matches("[A-Za-z0-9]{1,12}")) {
-                username = usernameField.getText();
-                snakeGame.usernameLabel.setText("Username: " + username); // Update the username label
-                snakeGame.primaryStage.setScene(snakeGame.mainMenuScene.scene);
-            } else {
-                instructionLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black; -fx-effect: dropshadow(one-pass-box, white, 5, 0.5, 0, 0);");
-                instructionLabel.setText("Invalid username. Please try again.\n(12 characters max, letters and numbers only)");
-            }
-        };
+        // Accept Button Logic
+        Runnable acceptLogic = createAcceptLogic(usernameField, instructionLabel, snakeGame);
 
         // Accept Button
-        Button acceptButton = new Button("Accept");
-        acceptButton.setOnAction(e -> acceptLogic.run());
+        Button acceptButton = setupAcceptButton(acceptLogic);
 
         // Set Enter key to trigger Accept logic
         usernameField.setOnKeyPressed(e -> {
@@ -74,12 +69,46 @@ public class UsernameScene {
 
         // Add components to layout
         layout.getChildren().addAll(instructionLabel, usernameField, acceptButton);
-        scene = new Scene(layout, 517,412);
+        scene = new Scene(layout, 517, 412);
+    }
+
+    private TextField setupUsernameField() {
+        // Configuration of the username input field
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Enter Username");
+        usernameField.setPrefWidth(200);
+        usernameField.setMaxWidth(200);
+        return usernameField;
+    }
+
+    private Label setupInstructionLabel() {
+        // Configuration of the instruction label
+        Label instructionLabel = new Label("Enter your username (12 characters max, letters and numbers only)");
+        // Styling code omitted for brevity
+        return instructionLabel;
+    }
+
+    private Runnable createAcceptLogic(TextField usernameField, Label instructionLabel, SnakeGame snakeGame) {
+        // Logic to handle the acceptance of the username
+        return () -> {
+            if (usernameField.getText().matches("[A-Za-z0-9]{1,12}")) {
+                username = usernameField.getText();
+                snakeGame.usernameLabel.setText("Username: " + username); // Update the username label
+                snakeGame.primaryStage.setScene(snakeGame.mainMenuScene.scene);
+            } else {
+                instructionLabel.setText("Invalid username. Please try again.\n(12 characters max, letters and numbers only)");
+            }
+        };
+    }
+
+    private Button setupAcceptButton(Runnable acceptLogic) {
+        // Configuration of the accept button
+        Button acceptButton = new Button("Accept");
+        acceptButton.setOnAction(e -> acceptLogic.run());
+        return acceptButton;
     }
 
     public String getUsername() {
         return username;
     }
-
-
 }

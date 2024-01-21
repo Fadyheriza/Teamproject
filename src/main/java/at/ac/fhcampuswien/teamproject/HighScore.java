@@ -1,8 +1,7 @@
 package at.ac.fhcampuswien.teamproject;
 
 
-
-public class HighScore implements Comparable<HighScore>{
+public class HighScore implements Comparable<HighScore> {
     private final String username;
     private final int score;
 

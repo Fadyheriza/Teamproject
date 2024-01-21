@@ -8,13 +8,15 @@ import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-
+/**
+ * SnakeGame class extends Application and serves as the main class for the Snake game.
+ * It initializes and manages different scenes and settings for the game.
+ */
 public class SnakeGame extends Application {
 
     public Stage primaryStage;
     public MainMenuScene mainMenuScene;
     public GameModeScene gameModeScene;
-
     public SettingsScene settingsScene;
     public MediaPlayer mediaPlayer;
     private UsernameScene usernameScene;
@@ -25,9 +27,9 @@ public class SnakeGame extends Application {
 
     public HighScoreManager standardModeHighScores = new HighScoreManager(5);
     public HighScoreManager advancedModeHighScores = new HighScoreManager(5);
-    String imageUrl = SnakeGame.class.getResource("/icon.png").toExternalForm();
-    Image iconImage = new Image(imageUrl);
+
     private boolean instructionsShown = false;
+
     public boolean isInstructionsShown() {
         return instructionsShown;
     }
@@ -57,18 +59,22 @@ public class SnakeGame extends Application {
 
         // Set the icon for the primaryStage
         primaryStage.getIcons().add(iconImage);
-        // UI scenes
-        mainMenuScene  = new MainMenuScene(this);
+
+        // Initialize UI scenes
+        mainMenuScene = new MainMenuScene(this);
         usernameScene = new UsernameScene(this);
         settingsScene = new SettingsScene(this);
         gameModeScene = new GameModeScene(this);
         highScoreScene = new HighScoreScene(this);
         showInstructionsPopupscene = new showInstructionsPopup(this);
+
         // Prepare the main menu scene
         prepareMainMenuScene();
-        // Set up the initial scene to the  input scene
+
+        // Set up the initial scene to the username scene
         primaryStage.setScene(usernameScene.scene);
-        // Show Main Menu
+
+        // Configure and show the primary stage
         primaryStage.setTitle("Snake Game");
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -80,6 +86,7 @@ public class SnakeGame extends Application {
         AdvancedGameMode.setMainStage(primaryStage);
         AdvancedGameMode.setMainMenuScene(mainMenuScene.scene);
     }
+
     @Override
     public void stop() {
         // Close the HighScoreManager connections
@@ -90,6 +97,7 @@ public class SnakeGame extends Application {
     public String getUsername() {
         return usernameScene.getUsername();
     }
+
     public static void main(String[] args) {
         launch(args);
     }

@@ -29,8 +29,11 @@ public class GameModeScene {
         standardModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         standardModeButton.setOnAction(e -> {
             // Logic to start the standard mode game
-            Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores,snakeGame.getUsername());
-            snakeGame.primaryStage.setScene(standardGameScene);
+            snakeGame.showInstructionsPopupscene.setRunnable(()->{
+                Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores,snakeGame.getUsername());
+                snakeGame.primaryStage.setScene(standardGameScene);
+            });
+            snakeGame.primaryStage.setScene(snakeGame.showInstructionsPopupscene.scene);
         });
 
         // Standard High Score Button

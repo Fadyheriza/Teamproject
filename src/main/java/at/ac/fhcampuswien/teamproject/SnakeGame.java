@@ -28,6 +28,7 @@ public class SnakeGame extends Application {
     public MediaPlayer mediaPlayer;
     private UsernameScene usernameScene;
     public HighScoreScene highScoreScene;
+    public showInstructionsPopup showInstructionsPopupscene;
 
     public Label usernameLabel = new Label();
 
@@ -64,6 +65,7 @@ public class SnakeGame extends Application {
         settingsScene = new SettingsScene(this);
         gameModeScene = new GameModeScene(this);
         highScoreScene = new HighScoreScene(this);
+        showInstructionsPopupscene = new showInstructionsPopup(this);
         // Prepare the main menu scene
         prepareMainMenuScene();
         // Set up the initial scene to the  input scene
@@ -86,6 +88,7 @@ public class SnakeGame extends Application {
         standardModeHighScores.closeConnection();
         advancedModeHighScores.closeConnection();
     }
+
     public String getUsername() {
         return usernameScene.getUsername();
     }

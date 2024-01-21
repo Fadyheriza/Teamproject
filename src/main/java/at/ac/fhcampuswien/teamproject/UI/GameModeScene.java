@@ -1,4 +1,5 @@
 package at.ac.fhcampuswien.teamproject.UI;
+
 import at.ac.fhcampuswien.teamproject.AdvancedGameMode;
 import at.ac.fhcampuswien.teamproject.SnakeGame;
 import at.ac.fhcampuswien.teamproject.StandardGameMode;
@@ -12,31 +13,30 @@ import javafx.scene.layout.*;
 public class GameModeScene {
     public Scene scene;
     private VBox layout = new VBox(20);
-    public GameModeScene(SnakeGame snakeGame)
-    {
-        layout.setAlignment(Pos.CENTER);
-        layout.setFillWidth(true); // Ensure the VBox fills its width
 
-        // Background setup
+    public GameModeScene(SnakeGame snakeGame) {
+        layout.setAlignment(Pos.CENTER);
+        layout.setFillWidth(true);
+
         String imageUrl = "snakelogo.png";
         Image backgroundImage = new Image(imageUrl);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        Background backgroundLayout = new Background(background);
-        layout.setBackground(backgroundLayout);
+        layout.setBackground(new Background(background));
 
-        // Standard Mode Button
         Button standardModeButton = new Button("Standard Mode");
         standardModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         standardModeButton.setOnAction(e -> {
-            // Logic to start the standard mode game
-            snakeGame.showInstructionsPopupscene.setRunnable(()->{
-                Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores,snakeGame.getUsername());
+            if (!snakeGame.isInstructionsShown()) {
+                snakeGame.setInstructionsShown(true);
+                snakeGame.primaryStage.setScene(snakeGame.showInstructionsPopupscene.scene);
+            } else {
+                // Directly start the game if instructions have been shown
+                Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores, snakeGame.getUsername());
                 snakeGame.primaryStage.setScene(standardGameScene);
-            });
-            snakeGame.primaryStage.setScene(snakeGame.showInstructionsPopupscene.scene);
+            }
         });
 
-        // Standard High Score Button
+
         Button standardHighScoreButton = new Button("Standard High Score");
         standardHighScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         standardHighScoreButton.setOnAction(e -> {
@@ -44,15 +44,13 @@ public class GameModeScene {
             snakeGame.primaryStage.setScene(snakeGame.highScoreScene.scene);
         });
 
-        // Advanced Mode Button
         Button advancedModeButton = new Button("Advanced Mode");
         advancedModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         advancedModeButton.setOnAction(e -> {
-            Scene advancedGameMode = AdvancedGameMode.createGameScene(snakeGame.advancedModeHighScores,snakeGame.getUsername());
+            Scene advancedGameMode = AdvancedGameMode.createGameScene(snakeGame.advancedModeHighScores, snakeGame.getUsername());
             snakeGame.primaryStage.setScene(advancedGameMode);
         });
 
-        // Advanced High Score Button
         Button advancedHighScoreButton = new Button("Advanced High Score");
         advancedHighScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         advancedHighScoreButton.setOnAction(e -> {
@@ -60,23 +58,17 @@ public class GameModeScene {
             snakeGame.primaryStage.setScene(snakeGame.highScoreScene.scene);
         });
 
-        // Configure HBoxes for buttons
         HBox standardModeLayout = new HBox(10, standardModeButton, standardHighScoreButton);
         standardModeLayout.setAlignment(Pos.CENTER);
 
         HBox advancedModeLayout = new HBox(10, advancedModeButton, advancedHighScoreButton);
         advancedModeLayout.setAlignment(Pos.CENTER);
 
-        // Back Button
         Button backButton = new Button("Back");
         backButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
-        backButton.setOnAction(e ->   snakeGame.primaryStage.setScene(snakeGame.mainMenuScene.scene)); // Switch back to main menu
+        backButton.setOnAction(e -> snakeGame.primaryStage.setScene(snakeGame.mainMenuScene.scene));
 
-        // Add all layouts to the main VBox
         layout.getChildren().addAll(standardModeLayout, advancedModeLayout, backButton);
-        scene = new Scene(layout, 517,412);
-    }
-    public Parent getLayout() {
-        return layout ;
+        scene = new Scene(layout, 517, 412);
     }
 }

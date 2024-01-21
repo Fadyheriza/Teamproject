@@ -27,7 +27,14 @@ public class SnakeGame extends Application {
     public HighScoreManager advancedModeHighScores = new HighScoreManager(5);
     String imageUrl = SnakeGame.class.getResource("/icon.png").toExternalForm();
     Image iconImage = new Image(imageUrl);
+    private boolean instructionsShown = false;
+    public boolean isInstructionsShown() {
+        return instructionsShown;
+    }
 
+    public void setInstructionsShown(boolean instructionsShown) {
+        this.instructionsShown = instructionsShown;
+    }
 
     @Override
     public void start(Stage primaryStage) {

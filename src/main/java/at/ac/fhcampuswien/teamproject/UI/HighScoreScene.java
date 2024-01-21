@@ -37,16 +37,19 @@ public class HighScoreScene {
             scene = new Scene(layout, 517,412);
         }
 
-public void setmode(String mode){
-        titleLabel.setText(mode + "High Scores");
-    List<HighScore> highScores = (mode.equals("Standard")) ? snakeGame.standardModeHighScores.getHighScores(mode) : snakeGame.advancedModeHighScores.getHighScores(mode);
+    public void setmode(String mode){
+        titleLabel.setText(mode + " High Scores");
+        highScoreList.getItems().clear(); // Clear existing items
 
-    // Process and display high scores with rankings
-    int rank = 1;
-    for (HighScore hs : highScores) {
-        String scoreEntry = rank + ": " + hs.getUsername() + " - " + hs.getScore();
-        highScoreList.getItems().add(scoreEntry);
-        rank++;
-    }
+        List<HighScore> highScores = mode.equals("Standard") ?
+                snakeGame.standardModeHighScores.getHighScores(mode) :
+                snakeGame.advancedModeHighScores.getHighScores(mode);
+
+        int rank = 1;
+        for (HighScore hs : highScores) {
+            String scoreEntry = rank + ": " + hs.getUsername() + " - " + hs.getScore();
+            highScoreList.getItems().add(scoreEntry);
+            rank++;
+        }
     }
 }

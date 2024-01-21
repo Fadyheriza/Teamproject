@@ -1,16 +1,12 @@
 package at.ac.fhcampuswien.teamproject.UI;
-import at.ac.fhcampuswien.teamproject.AdvancedGameMode;
 import at.ac.fhcampuswien.teamproject.HighScore;
 import at.ac.fhcampuswien.teamproject.SnakeGame;
-import at.ac.fhcampuswien.teamproject.StandardGameMode;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 

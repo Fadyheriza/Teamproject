@@ -2,20 +2,11 @@ package at.ac.fhcampuswien.teamproject;
 
 import at.ac.fhcampuswien.teamproject.UI.*;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
 import javafx.scene.image.Image;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import java.util.List;
-import java.util.Set;
 
 
 public class SnakeGame extends Application {

@@ -55,7 +55,6 @@ public class StandardGameMode {
         }
     }
 
-
     public enum Dir {
         left, right, up, down
     }
@@ -108,7 +107,7 @@ public class StandardGameMode {
 
 
 
-    public static VBox createPauseMenuLayout() {
+    private static VBox createPauseMenuLayout() {
         VBox pauseMenuLayout = new VBox(20);
         pauseMenuLayout.setAlignment(Pos.CENTER);
         pauseMenuLayout.setPadding(new Insets(20, 50, 20, 50));
@@ -125,8 +124,9 @@ public class StandardGameMode {
         Button mainMenuButton = new Button("Back to Main Menu");
         mainMenuButton.setFont(new Font("Arial", 18));
         mainMenuButton.setOnAction(e -> {
-            resetGame(); // Reset the game state before returning to the main menu
-            mainStage.setScene(mainMenuScene);
+            isPaused = false; // Ensure the game is unpaused
+            score = 0; // Reset the score
+            mainStage.setScene(mainMenuScene); // Return to main menu without resetting
         });
 
         pauseMenuLayout.getChildren().addAll(pauseLabel, continueButton, mainMenuButton);
@@ -138,13 +138,12 @@ public class StandardGameMode {
     private static AnimationTimer gameLoop;
 
     public static Scene createGameScene(HighScoreManager scoreManager, String username) {
-        resetGame(); // Reset the game state before starting a new game
         highScoreManager = scoreManager;
         currentPlayerUsername = username;
         newFood();
 
         Pane root = new Pane();
-        canvas = new Canvas(width * cornersize, (height + 1) * cornersize); // +1 für Punkteanzeige
+        canvas = new Canvas(width * cornersize, height * cornersize);
         gc = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
 
@@ -167,7 +166,7 @@ public class StandardGameMode {
                         tick(gc, (now - lastTick) / 1e9);
                         return;
                     }
-                    if (now - lastTick > (1000 / speed) * 1e6) {
+                    if (now - lastTick > 1000000000 / speed) {
                         lastTick = now;
                         tick(gc, (now - lastTick) / 1e9);
                     }
@@ -271,13 +270,13 @@ public class StandardGameMode {
         }
 
 
-        // Überprüfen, ob die Schlange den Rand des Bildschirms erreicht hat
+
         if (newX < 0 || newX >= width || newY < 1 || newY >= height) { // Start checking from y = 1
             gameOver = true;
             return;
         }
 
-        // Collision detection mit sich selbst
+        // Collision detection with itself
         for (int i = 1; i < snake.size(); i++) {
             Corner segment = snake.get(i);
             if (newX == segment.x && newY == segment.y) {
@@ -285,8 +284,7 @@ public class StandardGameMode {
                 return;
             }
         }
-
-        // Bewegung des Körpers
+        //moving body
         for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).x = snake.get(i - 1).x;
             snake.get(i).y = snake.get(i - 1).y;
@@ -295,42 +293,41 @@ public class StandardGameMode {
         head.x = newX;
         head.y = newY;
 
-        // Überprüfen, ob die Schlange den Apfel isst
+        // Check if snake eats the apple
         if (appleX == head.x && appleY == head.y) {
             addNewSegment();
             newFood();
             score++;
         }
 
-        // Alles rendern
+        // Render everything
         render(gc);
     }
-
     private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
 
         // background
-        String imageUrl = "bg.png";
-        Image image = new Image("bg.png", width * cornersize, height * cornersize, false, false);
+        String imageUrl = "https://img.freepik.com/vektoren-kostenlos/nahtloses-gruenes-grasmuster_1284-52275.jpg?size=626&ext=jpg";
+        Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
         gc.drawImage(image, 0, 0);
     }
 
     private static void render(GraphicsContext gc) {
         renderBackground(gc);
 
-        // Setzen Sie die Schriftart und -größe
+        // score
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 25));
 
         // Zeichnen des Texts mit einem schwarzen Rand
         String scoreText = "Score: " + score;
         gc.setStroke(Color.BLACK); // Farbe des Rands
-        gc.setLineWidth(3); // Dicke des Rands
-        gc.strokeText(scoreText, 10, 25); // Zeichnen des Rands
+        gc.setLineWidth(2); // Dicke des Rands
+        gc.strokeText(scoreText, 10, 20); // Zeichnen des Rands
 
         // Zeichnen des Texts mit weißer Füllung
         gc.setFill(Color.WHITE); // Farbe der Füllung
-        gc.fillText(scoreText, 10, 25); // Zeichnen der Füllung
+        gc.fillText(scoreText, 10, 20);
 
         //foodcolor
         Color cc = Color.RED;
@@ -344,16 +341,16 @@ public class StandardGameMode {
             gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 2, cornersize - 2);
+
         }
+
     }
-
-
 
     // food random places
     public static void newFood() {
         while (true) {
-            appleX = rand.nextInt(width);
-            appleY = rand.nextInt(height);
+            appleX = rand.nextInt(width );
+            appleY = rand.nextInt(height - 1) + 1; // Verhindert, dass der Apfel in der ersten Zeile (y=0) erscheint
 
             boolean isOccupied = false;
             for (Corner c : snake) {
@@ -363,12 +360,12 @@ public class StandardGameMode {
                 }
             }
 
-            // Überprüfen, ob der Apfel in der ersten Zeile ist, und wenn ja, erneut generieren
-            if (!isOccupied && appleY != 0) {
+            if (!isOccupied) {
                 break;
             }
 
-            if (snake.size() == width * height) {
+            if (snake.size() == width * (height - 1)) {
+                // Alle Felder außer der ersten Zeile sind besetzt
                 break;
             }
         }
@@ -439,6 +436,7 @@ public class StandardGameMode {
         mainStage.setScene(gameOverScene);
 
         score = 0;
+
     }
 
 
@@ -457,10 +455,7 @@ public class StandardGameMode {
         direction = Dir.left;
         gameOver = false;
         newFood();
-        lastKey = KeyCode.UNDEFINED; // Reset the last key pressed
-        directionQueue.clear(); // Clear the direction queue
     }
-
 
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;

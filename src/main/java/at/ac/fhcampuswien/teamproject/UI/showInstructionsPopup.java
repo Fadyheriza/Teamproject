@@ -21,7 +21,7 @@ public class showInstructionsPopup {
         layout.setAlignment(Pos.BOTTOM_CENTER);
         layout.setPadding(new Insets(20));
 
-        Image backgroundImage = new Image("Instruction.jpg");
+        Image backgroundImage = new Image("Instruction (1).jpg");
         double screenWidth = 517;
         double screenHeight = 412;
         double imageWidth = backgroundImage.getWidth();

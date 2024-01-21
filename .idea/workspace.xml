@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="design verbessern paar sachen vom review verbessert">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Instruction (1).jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f7109305-4a9f-4b0d-aff1-0d916d016e19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_01_2024_16_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_01_2024_16_32__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/GameModeScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/GameModeScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/showInstructionsPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/showInstructionsPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Instruction.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +100,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kingp/IdeaProjects/Teamproject/src/main/resources",
+    "last_opened_file_path": "C:/Users/ismai/IdeaProjects/Teamproject/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,6 +115,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ismai\IdeaProjects\Teamproject\src\main\resources" />
       <recent name="C:\Users\kingp\IdeaProjects\Teamproject\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -196,7 +201,8 @@
       <workItem from="1705607909723" duration="6424000" />
       <workItem from="1705774490838" duration="710000" />
       <workItem from="1705778614885" duration="200000" />
-      <workItem from="1705786807087" duration="22853000" />
+      <workItem from="1705786807087" duration="21524000" />
+      <workItem from="1705867516995" duration="3806000" />
     </task>
     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
       <option name="closed" value="true" />
@@ -310,23 +316,7 @@
       <option name="project" value="LOCAL" />
       <updated>1705863230398</updated>
     </task>
-    <task id="LOCAL-00015" summary="design verbessern paar sachen vom review verbessert">
-      <option name="closed" value="true" />
-      <created>1705866257847</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1705866257847</updated>
-    </task>
-    <task id="LOCAL-00016" summary="design verbessern paar sachen vom review verbessert">
-      <option name="closed" value="true" />
-      <created>1705866378870</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1705866378870</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

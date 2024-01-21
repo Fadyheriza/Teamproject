@@ -1,41 +1,34 @@
-# Snake Game (teamproject)
+# Snake Game (Team Project)
 
-This repository contains the source code for a classic Snake game, developed as part of a team project at [FH Campus Wien](https://www.fh-campuswien.ac.at/). The game is built using JavaFX and offers an engaging and nostalgic gameplay experience.
+This repository hosts the source code for a classic Snake game, developed as part of a team project at [FH Campus Wien](https://www.fh-campuswien.ac.at/). 
+Built using JavaFX, the game offers a nostalgic gameplay experience with modern enhancements.
 
 ## Features
 
-- **User-Friendly Interface:** The game features a simple and intuitive interface, making it easy for players of all ages to navigate and play.
-- **Customizable Settings:** Players can adjust game settings, including sound volume and mute options.
-- **High Score Tracking:** The game maintains a high score list for both standard and advanced modes, encouraging players to beat their best scores.
-- **Username Integration:** Players can enter a username to personalize their gaming experience.
+- **User-Friendly Interface:** Designed to be simple and intuitive, enabling players of all ages to easily navigate and enjoy the game.
+- **Customizable Settings:** Offers options to adjust sound volume and mute, allowing players to tailor their gaming experience.
+- **High Score Tracking:** Both standard and advanced modes come with high score lists, motivating players to surpass their previous bests.
+- **Username Integration:** Players can set a username, adding a personal touch to their gaming experience.
 
 ## Installation
 
-To run the game, you'll need to have Java and JavaFX installed on your system. Follow these steps:
+To play the game, ensure you have Java and JavaFX installed on your system. Follow these steps:
 
-1. Clone the repository: `git clone [repository URL]`
+1. Clone the repository:
 2. Navigate to the cloned directory.
-3. Compile and run the game using your Java IDE or command line tools.
-
-## Known Bugs
-
-- **Advanced Mode Issues
-
-## Areas for Improvement
-
-- **Snake Appearance:** The visual design of the snake needs enhancement to improve the overall aesthetic of the game.
-- **Bug Fixes:** The aforementioned bugs, particularly in the advanced mode require immediate attention.
-- **Gameplay Balancing:** Adjusting the snake's speed for a more enjoyable gameplay experience.
+3. Compile and run the game using a Java IDE or command-line tools.
 
 ## Contributing
 
-We welcome contributions! If you're interested in helping improve this game, please feel free to submit issues and pull requests.
+We welcome contributions to improve the game! Feel free to submit issues and pull requests. 
 
 ## Acknowledgments
 
-- Background music sourced from [Fadyheriza's GitHub](https://github.com/Fadyheriza/Music).
-- Game logo and settings icon from [HTML5 Games](https://html5-games.io) and [Shutterstock](https://www.shutterstock.com), respectively.
+- Background music: Sourced from [TVARI Tokyo Cafe (https://pixabay.com/de/music/schlagt-tvari-tokyo-cafe-159065/)]
+- Visual assets: Game logo from [HTML5 Games](https://html5-games.io)
+- Settings icon from [Shutterstock](https://www.shutterstock.com).
 
 ---
 
-*This README was generated as part of the software engineering course at FH Campus Wien.*
+*This README is part of the software engineering course at FH Campus Wien.*
+

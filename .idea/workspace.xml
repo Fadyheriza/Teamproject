@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="added in readme file">
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="added instructions image in advance mode">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/bg2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/SnakeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/GameModeScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/GameModeScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/showInstructionsPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/showInstructionsPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,7 +387,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705947225752</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="added instructions image in advance mode">
+      <option name="closed" value="true" />
+      <created>1705950083937</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1705950083937</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,6 +427,7 @@
     <MESSAGE value="added sound in standard game mode for lose sound and change link pic bg path to resource img" />
     <MESSAGE value="added sound in advance game for apple eat and other colors eat" />
     <MESSAGE value="added in readme file" />
-    <option name="LAST_COMMIT_MESSAGE" value="added in readme file" />
+    <MESSAGE value="added instructions image in advance mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="added instructions image in advance mode" />
   </component>
 </project>

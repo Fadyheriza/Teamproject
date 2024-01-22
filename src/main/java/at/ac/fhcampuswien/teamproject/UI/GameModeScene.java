@@ -60,7 +60,7 @@ public class GameModeScene {
         Button standardHighScoreButton = new Button("Standard High Score");
         standardHighScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         standardHighScoreButton.setOnAction(e -> {
-            snakeGame.highScoreScene.setmode("Standard");
+            snakeGame.highScoreScene.setMode("Standard");
             snakeGame.primaryStage.setScene(snakeGame.highScoreScene.scene);
         });
 
@@ -80,7 +80,7 @@ public class GameModeScene {
         Button advancedHighScoreButton = new Button("Advanced High Score");
         advancedHighScoreButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         advancedHighScoreButton.setOnAction(e -> {
-            snakeGame.highScoreScene.setmode("Advanced");
+            snakeGame.highScoreScene.setMode("Advanced");
             snakeGame.primaryStage.setScene(snakeGame.highScoreScene.scene);
         });
 

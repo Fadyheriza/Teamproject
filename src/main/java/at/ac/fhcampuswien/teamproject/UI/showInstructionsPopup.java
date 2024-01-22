@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.teamproject.UI;
 
+import at.ac.fhcampuswien.teamproject.AdvancedGameMode;
 import at.ac.fhcampuswien.teamproject.SnakeGame;
 import at.ac.fhcampuswien.teamproject.StandardGameMode;
 import javafx.geometry.Insets;
@@ -17,11 +18,15 @@ public class showInstructionsPopup {
 
     public showInstructionsPopup(SnakeGame snakeGame) {
         this.snakeGame = snakeGame; // Initialize the reference
-
+        Image backgroundImage;
         layout.setAlignment(Pos.BOTTOM_CENTER);
         layout.setPadding(new Insets(20));
+        System.out.println(snakeGame.isAdvancedMode()+"mode");
 
-        Image backgroundImage = new Image("Instruction (1).jpg");
+            backgroundImage  = new Image("Instruction (1).jpg");
+
+
+
         double screenWidth = 517;
         double screenHeight = 412;
         double imageWidth = backgroundImage.getWidth();
@@ -40,12 +45,57 @@ public class showInstructionsPopup {
         Button startGameButton = new Button("Start Game");
         startGameButton.setFont(new Font("Arial", 18));
         startGameButton.setOnAction(e -> {
-            Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores, snakeGame.getUsername());
-            snakeGame.primaryStage.setScene(standardGameScene);
+
+
+                Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores, snakeGame.getUsername());
+                snakeGame.primaryStage.setScene(standardGameScene);
+
+
         });
 
         layout.getChildren().addAll(spacer, startGameButton);
         scene = new Scene(layout, 517, 412);
     }
+    public showInstructionsPopup(SnakeGame snakeGame,String Mode) {
+        this.snakeGame = snakeGame; // Initialize the reference
+        Image backgroundImage;
+        layout.setAlignment(Pos.BOTTOM_CENTER);
+        layout.setPadding(new Insets(20));
+        System.out.println(snakeGame.isAdvancedMode()+"mode");
+
+            backgroundImage  = new Image("advancedinstructions.png");
+
+
+
+        double screenWidth = 517;
+        double screenHeight = 412;
+        double imageWidth = backgroundImage.getWidth();
+        double imageHeight = backgroundImage.getHeight();
+        double scale = Math.min(screenWidth / imageWidth, screenHeight / imageHeight);
+        double scaledWidth = imageWidth * scale;
+        double scaledHeight = imageHeight * scale;
+
+        BackgroundSize backgroundSize = new BackgroundSize(scaledWidth, scaledHeight, false, false, false, false);
+        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
+        layout.setBackground(new Background(background));
+
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+
+        Button startGameButton = new Button("Start Game");
+        startGameButton.setFont(new Font("Arial", 18));
+        startGameButton.setOnAction(e -> {
+
+
+            Scene advancedGameMode = AdvancedGameMode.createGameScene(snakeGame.advancedModeHighScores, snakeGame.getUsername());
+                snakeGame.primaryStage.setScene(advancedGameMode);
+
+
+        });
+
+        layout.getChildren().addAll(spacer, startGameButton);
+        scene = new Scene(layout, 517, 412);
+    }
+
 }
 

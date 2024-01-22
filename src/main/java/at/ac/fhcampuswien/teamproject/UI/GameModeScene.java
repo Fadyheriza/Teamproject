@@ -37,7 +37,12 @@ public class GameModeScene {
         } catch (Exception e) {
             System.out.println("Error loading background image: " + e.getMessage());
         }
-
+        // Button for viewing instructions
+        Button instructionsButton = new Button("View Instructions");
+        instructionsButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
+        instructionsButton.setOnAction(e -> {
+            snakeGame.primaryStage.setScene(snakeGame.showInstructionsPopupscene.scene);
+        });
         // Button for starting the Standard Game Mode
         Button standardModeButton = new Button("Standard Mode");
         standardModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
@@ -63,8 +68,12 @@ public class GameModeScene {
         Button advancedModeButton = new Button("Advanced Mode");
         advancedModeButton.setStyle("-fx-font-size: 16px; -fx-padding: 10px;");
         advancedModeButton.setOnAction(e -> {
+            if (!snakeGame.isInstructionsShown2()) {
+                snakeGame.setInstructionsShown2(true);
+                snakeGame.primaryStage.setScene(snakeGame.showInstructionsPopupscene2.scene);
+            } else {
             Scene advancedGameMode = AdvancedGameMode.createGameScene(snakeGame.advancedModeHighScores, snakeGame.getUsername());
-            snakeGame.primaryStage.setScene(advancedGameMode);
+            snakeGame.primaryStage.setScene(advancedGameMode);}
         });
 
         // Button for viewing Advanced Mode high scores

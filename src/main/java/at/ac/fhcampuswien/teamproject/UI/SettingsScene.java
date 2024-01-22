@@ -30,7 +30,7 @@ public class SettingsScene {
 
         // Try-catch block for loading the background image
         try {
-            String imageUrl = "settinglogo.png";
+            String imageUrl = "1settinglogo.png";
             Image backgroundImage = new Image(imageUrl);
             BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background backgroundLayout = new Background(background);

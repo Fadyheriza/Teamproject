@@ -33,6 +33,34 @@ We welcome contributions to improve the game! Feel free to submit issues and pul
 - **Sound Effect Title:** Apple Munch
 - **Source:** [Pixabay - Apple Munch](https://pixabay.com/sound-effects/apple-munch-40169/)
  ---
+ 
+# Snake Game - Advanced Mode
 
-*This README is part of the software engineering course at FH Campus Wien.*
+Welcome to the Snake Game - Advanced Mode! This game is an extended version of the classic Snake Game with additional features and challenges.
+
+## How to Play
+
+1. **Objective**: The main goal of the game is to control the snake, eat apples, and grow as long as possible without colliding with the walls or the snake's own body.
+
+2. **Controls**:
+    - Use the arrow keys (W, A, S, D) to navigate the snake.
+    - Press the `ESC` key to pause and resume the game.
+
+3. **Game Elements**:
+    - **Red Apple**: Increases your score by 1 and slightly speeds up the snake.
+    - **Gold Apple**: Grants a temporary speed boost for 15 seconds.
+    - **Blue Apple**: Adds 3 points to your score.
+    - **Chocolate Apple**: Grants a temporary poison effect, inverting controls for 15 seconds.
+
+4. **Scoring**:
+    - Eating a red apple increases your score by 1.
+    - Eating a blue apple adds 3 points to your score.
+    - The gold apple gives a temporary speed boost.
+    - The chocolate apple inverts controls for a short duration.
+
+5. **Game Over**:
+    - The game ends when the snake collides with the walls or itself.
+    - You can view your high score after the game over screen.
+
+ *This README is part of the software engineering course at FH Campus Wien.*
 

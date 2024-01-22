@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien.teamproject;
 
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -54,7 +53,7 @@ public class AdvancedGameMode {
     static boolean isPaused = false;
     private static final int GOLD_APPLE = 1;
     private static final int BLUE_APPLE = 2;
-    private static final int YELLOW_APPLE = 3;
+    private static final int CHOCOLATE_Apple = 3;
 
     // Variables to track apple types and their effects
     private static int currentAppleType = 0;
@@ -363,8 +362,8 @@ public class AdvancedGameMode {
                     playSound(EAT_APPLE_SOUND);
                     score += 3;
                     break;
-                case YELLOW_APPLE:
-                    System.out.println("YELLOW_APPLE");
+                case CHOCOLATE_Apple:
+                    System.out.println("CHOCOLATE_Apple");
                     playSound(EAT_APPLE_SOUND);
                     playSound(SPEED_BOOST_SOUND);
                     startPoisonEffect();
@@ -446,7 +445,7 @@ public class AdvancedGameMode {
             case BLUE_APPLE:
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.BLUE);
                 break;
-            case YELLOW_APPLE:
+            case CHOCOLATE_Apple:
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.CHOCOLATE);
                 break;
             default:

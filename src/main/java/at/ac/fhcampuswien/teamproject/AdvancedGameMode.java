@@ -29,11 +29,11 @@ import java.util.Queue;
 public class AdvancedGameMode {
     static int score = 0;
     static int speed = 5;
-    static int width = 20;
-    static int height = 20;
+    static int width = 21;
+    static int height = 17;
     static int appleX = 0;
     static int appleY = 0;
-    static int cornersize = 25;
+    static int cornersize = 24;
     static List<Corner> snake = new ArrayList<>();
     static Dir direction = Dir.left;
     static boolean gameOver = false;

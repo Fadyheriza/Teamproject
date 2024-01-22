@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="update simple snake speed by eating food by increase 5 of speed">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_01_2024_16_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_01_2024_16_32__Changes_.xml" afterDir="false" />
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="added setting panel with new background pic and showing correct score on both advance and standard and if one player exit not add more username it and replace score if they have low score">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +95,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/hadid/Downloads/Compressed/TeamProject",
+    "last_opened_file_path": "C:/Users/hadid/IdeaProjects/m/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -110,6 +110,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hadid\IdeaProjects\m\src\main\resources" />
       <recent name="C:\Users\ismai\IdeaProjects\Teamproject\src\main\resources" />
       <recent name="C:\Users\kingp\IdeaProjects\Teamproject\src\main\resources" />
     </key>
@@ -337,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705928492554</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added setting panel with new background pic and showing correct score on both advance and standard and if one player exit not add more username it and replace score if they have low score">
+      <option name="closed" value="true" />
+      <created>1705942640390</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705942640390</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,6 +373,7 @@
     <MESSAGE value="design verbessern paar sachen vom review verbessert" />
     <MESSAGE value="Design und Advanced fehlt sonst alles da" />
     <MESSAGE value="update simple snake speed by eating food by increase 5 of speed" />
-    <option name="LAST_COMMIT_MESSAGE" value="update simple snake speed by eating food by increase 5 of speed" />
+    <MESSAGE value="added setting panel with new background pic and showing correct score on both advance and standard and if one player exit not add more username it and replace score if they have low score" />
+    <option name="LAST_COMMIT_MESSAGE" value="added setting panel with new background pic and showing correct score on both advance and standard and if one player exit not add more username it and replace score if they have low score" />
   </component>
 </project>

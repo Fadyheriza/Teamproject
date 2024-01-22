@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="added sound in advance game for apple eat and other colors eat">
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="added in readme file">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/advancedinstructions.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -369,7 +371,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705945745469</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="added in readme file">
+      <option name="closed" value="true" />
+      <created>1705947200837</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1705947200837</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,6 +410,7 @@
     <MESSAGE value="change screen size of game window in standard and advanced" />
     <MESSAGE value="added sound in standard game mode for lose sound and change link pic bg path to resource img" />
     <MESSAGE value="added sound in advance game for apple eat and other colors eat" />
-    <option name="LAST_COMMIT_MESSAGE" value="added sound in advance game for apple eat and other colors eat" />
+    <MESSAGE value="added in readme file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added in readme file" />
   </component>
 </project>

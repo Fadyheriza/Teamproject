@@ -28,7 +28,11 @@ We welcome contributions to improve the game! Feel free to submit issues and pul
 - Visual assets: Game logo from [HTML5 Games](https://html5-games.io)
 - Settings icon from [Shutterstock](https://www.shutterstock.com).
 
----
+# Snake Game Sound Effect
+## Sound Effect Information
+- **Sound Effect Title:** Apple Munch
+- **Source:** [Pixabay - Apple Munch](https://pixabay.com/sound-effects/apple-munch-40169/)
+ ---
 
 *This README is part of the software engineering course at FH Campus Wien.*
 

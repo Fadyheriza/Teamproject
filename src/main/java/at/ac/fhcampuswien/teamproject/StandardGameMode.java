@@ -10,6 +10,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.animation.AnimationTimer;
@@ -42,7 +44,9 @@ public class StandardGameMode {
     private static Stage mainStage;
     private static Scene mainMenuScene;
     private static final double LERP_RATE = 0.1;
+    private static final String GAME_OVER_SOUND = "games.mp3";
 
+    private static MediaPlayer mediaPlayer;
     private static Canvas canvas;
     private static GraphicsContext gc;
     private static AnimationTimer shakeTimer;
@@ -313,7 +317,7 @@ public class StandardGameMode {
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
 
         // background
-        String imageUrl = "https://img.freepik.com/vektoren-kostenlos/nahtloses-gruenes-grasmuster_1284-52275.jpg?size=626&ext=jpg";
+        String imageUrl = "bg.png";
         Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
         gc.drawImage(image, 0, 0);
     }
@@ -408,6 +412,8 @@ public class StandardGameMode {
         String gameMode = "Standard";
         highScoreManager.addScore(currentPlayerUsername, score, gameMode);
         speed=5;
+        playSound(GAME_OVER_SOUND);
+
         // Create game over interface elements
         VBox gameOverLayout = new VBox(20);
         gameOverLayout.setAlignment(Pos.CENTER);
@@ -448,7 +454,16 @@ public class StandardGameMode {
 
     }
 
-
+    private static void playSound(String soundFileName) {
+        try {
+            String soundFileUrl = AdvancedGameMode.class.getResource("/" + soundFileName).toExternalForm();
+            Media sound = new Media(soundFileUrl);
+            mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
+        } catch (NullPointerException e) {
+            System.err.println("Sound file not found: " + soundFileName);
+        }
+    }
     public static void resetGame() {
         if (gameLoop != null) {
             gameLoop.stop();

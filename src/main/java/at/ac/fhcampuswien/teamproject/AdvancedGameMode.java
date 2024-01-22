@@ -13,6 +13,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.animation.AnimationTimer;
@@ -59,6 +61,10 @@ public class AdvancedGameMode {
     private static Timeline speedBoostTimer;
     private static boolean isPoisoned = false;
     private static long poisonEndTime = 0;
+    private static final String EAT_APPLE_SOUND = "eat_apple.mp3";
+    private static final String SPEED_BOOST_SOUND = "speed_boost.mp3";
+    private static final String GAME_OVER_SOUND = "games.mp3";
+    private static MediaPlayer mediaPlayer;
 
     private static void shakeSnake() {
         Random random = new Random();
@@ -343,23 +349,30 @@ public class AdvancedGameMode {
             switch (currentAppleType) {
                 case 0: // RED_APPLE
                     System.out.println("RED_APPLE");
+                    playSound(EAT_APPLE_SOUND);
                     speed = Math.min(10, speed + 1); // Increase speed by 1
                     score++;
                     break;
                 case GOLD_APPLE:
                     System.out.println("GOLD_APPLE");
+                    playSound(SPEED_BOOST_SOUND);
                     startSpeedBoostTimer();
                     break;
                 case BLUE_APPLE:
                     System.out.println("BLUE_APPLE");
+                    playSound(EAT_APPLE_SOUND);
                     score += 3;
                     break;
                 case YELLOW_APPLE:
                     System.out.println("YELLOW_APPLE");
+                    playSound(EAT_APPLE_SOUND);
+                    playSound(SPEED_BOOST_SOUND);
                     startPoisonEffect();
                     break;
                 default:
                     System.out.println("default");
+                    playSound(EAT_APPLE_SOUND);
+
                     score++;
                     break;
             }
@@ -434,7 +447,7 @@ public class AdvancedGameMode {
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.BLUE);
                 break;
             case YELLOW_APPLE:
-                drawApple(gc, appleX * cornersize, appleY * cornersize, Color.YELLOW);
+                drawApple(gc, appleX * cornersize, appleY * cornersize, Color.CHOCOLATE);
                 break;
             default:
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.RED);
@@ -512,6 +525,7 @@ public class AdvancedGameMode {
         gameOverLayout.setAlignment(Pos.CENTER);
         gameOverLayout.setPadding(new Insets(20, 50, 20, 50));
         gameOverLayout.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+        playSound(GAME_OVER_SOUND);
 
         // Display High Score and Username
         Label highScoreLabel = new Label("High Score: " + score);
@@ -571,7 +585,16 @@ public class AdvancedGameMode {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
     }
-
+    private static void playSound(String soundFileName) {
+        try {
+            String soundFileUrl = AdvancedGameMode.class.getResource("/" + soundFileName).toExternalForm();
+            Media sound = new Media(soundFileUrl);
+            mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
+        } catch (NullPointerException e) {
+            System.err.println("Sound file not found: " + soundFileName);
+        }
+    }
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;
     }

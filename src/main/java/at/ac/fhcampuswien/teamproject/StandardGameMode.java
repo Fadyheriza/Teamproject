@@ -301,6 +301,7 @@ public class StandardGameMode {
             addNewSegment();
             newFood();
             score++;
+            speed+=5;
         }
 
         // Render everything
@@ -406,6 +407,7 @@ public class StandardGameMode {
         }
         String gameMode = "Standard";
         highScoreManager.addScore(currentPlayerUsername, score, gameMode);
+        speed=5;
         // Create game over interface elements
         VBox gameOverLayout = new VBox(20);
         gameOverLayout.setAlignment(Pos.CENTER);
@@ -462,6 +464,7 @@ public class StandardGameMode {
         direction = Dir.left;
         gameOver = false;
         newFood();
+        speed=5;
     }
 
     public static void setMainMenuScene(Scene scene) {

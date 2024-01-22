@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="added instructions image in advance mode">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/bg2.png" afterDir="false" />
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Design und Advanced fehlt sonst alles da">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/StandardGameMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/showInstructionsPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/showInstructionsPopup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +59,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="0dd96d88-78db-461d-afb0-45ea69d5ac2f" />
+        <option name="accountId" value="9a17095d-2dec-4a4b-8201-a3a3549f45cd" />
         <option name="url" value="https://github.com/Fadyheriza/Teamproject.git" />
       </UrlAndAccount>
     </option>
@@ -81,37 +82,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.SnakeGame.executor": "Run",
-    "Gradle.Build Teamproject.executor": "Run",
-    "Gradle.Teamproject [:SnakeGame.main()].executor": "Run",
-    "Gradle.Teamproject.executor": "Run",
-    "Gradle.m [:SnakeGame.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/hadid/IdeaProjects/m/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.SnakeGame.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Teamproject.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Teamproject [:SnakeGame.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Teamproject.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ismai/IdeaProjects/Teamproject/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\hadid\IdeaProjects\m\src\main\resources" />
       <recent name="C:\Users\ismai\IdeaProjects\Teamproject\src\main\resources" />
       <recent name="C:\Users\kingp\IdeaProjects\Teamproject\src\main\resources" />
     </key>
@@ -331,71 +330,7 @@
       <option name="project" value="LOCAL" />
       <updated>1705875532116</updated>
     </task>
-    <task id="LOCAL-00017" summary="update simple snake speed by eating food by increase 5 of speed">
-      <option name="closed" value="true" />
-      <created>1705928492554</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1705928492554</updated>
-    </task>
-    <task id="LOCAL-00018" summary="added setting panel with new background pic and showing correct score on both advance and standard and if one player exit not add more username it and replace score if they have low score">
-      <option name="closed" value="true" />
-      <created>1705942640390</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1705942640390</updated>
-    </task>
-    <task id="LOCAL-00019" summary="change screen size of game window in standard and advanced">
-      <option name="closed" value="true" />
-      <created>1705944359647</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1705944359647</updated>
-    </task>
-    <task id="LOCAL-00020" summary="added sound in standard game mode for lose sound and change link pic bg path to resource img">
-      <option name="closed" value="true" />
-      <created>1705945294196</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1705945294196</updated>
-    </task>
-    <task id="LOCAL-00021" summary="added sound in advance game for apple eat and other colors eat">
-      <option name="closed" value="true" />
-      <created>1705945745469</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1705945745469</updated>
-    </task>
-    <task id="LOCAL-00022" summary="added in readme file">
-      <option name="closed" value="true" />
-      <created>1705947200837</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1705947200837</updated>
-    </task>
-    <task id="LOCAL-00023" summary="added in readme file">
-      <option name="closed" value="true" />
-      <created>1705947225752</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1705947225752</updated>
-    </task>
-    <task id="LOCAL-00024" summary="added instructions image in advance mode">
-      <option name="closed" value="true" />
-      <created>1705950083937</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1705950083937</updated>
-    </task>
-    <option name="localTasksCounter" value="25" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,13 +356,6 @@
     <MESSAGE value="Advanced fehlt, design verbessern und escape button" />
     <MESSAGE value="design verbessern paar sachen vom review verbessert" />
     <MESSAGE value="Design und Advanced fehlt sonst alles da" />
-    <MESSAGE value="update simple snake speed by eating food by increase 5 of speed" />
-    <MESSAGE value="added setting panel with new background pic and showing correct score on both advance and standard and if one player exit not add more username it and replace score if they have low score" />
-    <MESSAGE value="change screen size of game window in standard and advanced" />
-    <MESSAGE value="added sound in standard game mode for lose sound and change link pic bg path to resource img" />
-    <MESSAGE value="added sound in advance game for apple eat and other colors eat" />
-    <MESSAGE value="added in readme file" />
-    <MESSAGE value="added instructions image in advance mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="added instructions image in advance mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Design und Advanced fehlt sonst alles da" />
   </component>
 </project>

@@ -597,9 +597,6 @@ public class AdvancedGameMode {
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;
     }
-    public static void setMainStage(Scene scene) {
-        mainMenuScene = scene;
-    }
     public static void setMainStage(Stage stage) {
         mainStage = stage;
     }

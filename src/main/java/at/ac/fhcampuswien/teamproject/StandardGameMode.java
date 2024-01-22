@@ -305,7 +305,7 @@ public class StandardGameMode {
             addNewSegment();
             newFood();
             score++;
-            speed+=5;
+            speed+=0.75;
         }
 
         // Render everything

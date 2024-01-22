@@ -21,8 +21,6 @@ public class showInstructionsPopup {
         Image backgroundImage;
         layout.setAlignment(Pos.BOTTOM_CENTER);
         layout.setPadding(new Insets(20));
-        System.out.println(snakeGame.isAdvancedMode()+"mode");
-
             backgroundImage  = new Image("Instruction (1).jpg");
 
 
@@ -61,8 +59,6 @@ public class showInstructionsPopup {
         Image backgroundImage;
         layout.setAlignment(Pos.BOTTOM_CENTER);
         layout.setPadding(new Insets(20));
-        System.out.println(snakeGame.isAdvancedMode()+"mode");
-
             backgroundImage  = new Image("advancedinstructions.png");
 
 

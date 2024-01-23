@@ -305,7 +305,7 @@ public class StandardGameMode {
             addNewSegment();
             newFood();
             score++;
-            speed+=0.75;
+            speed += 0.75;
         }
 
         // Render everything
@@ -411,7 +411,7 @@ public class StandardGameMode {
         }
         String gameMode = "Standard";
         highScoreManager.addScore(currentPlayerUsername, score, gameMode);
-        speed=5;
+        speed = 5;
         playSound(GAME_OVER_SOUND);
 
         // Create game over interface elements
@@ -464,6 +464,7 @@ public class StandardGameMode {
             System.err.println("Sound file not found: " + soundFileName);
         }
     }
+
     public static void resetGame() {
         if (gameLoop != null) {
             gameLoop.stop();
@@ -479,7 +480,7 @@ public class StandardGameMode {
         direction = Dir.left;
         gameOver = false;
         newFood();
-        speed=5;
+        speed = 5;
     }
 
     public static void setMainMenuScene(Scene scene) {

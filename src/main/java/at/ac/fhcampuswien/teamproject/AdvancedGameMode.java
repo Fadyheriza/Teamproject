@@ -17,9 +17,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.animation.AnimationTimer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -87,9 +89,11 @@ public class AdvancedGameMode {
             this.y = y;
         }
     }
+
     private static double lerp(double start, double end, double t) {
         return start + t * (end - start);
     }
+
     private static Scene currentGameScene;
 
     public static void handlePauseGame() {
@@ -110,7 +114,8 @@ public class AdvancedGameMode {
             // When resuming the game
             if (gameLoop != null) {
                 gameLoop.start(); // Resume the game loop
-            };
+            }
+            ;
             StackPane root = new StackPane();
             root.getChildren().add(canvas); // Add only canvas to the root
             currentGameScene = new Scene(root, canvas.getWidth(), canvas.getHeight()); // Update currentGameScene
@@ -389,8 +394,6 @@ public class AdvancedGameMode {
     }
 
 
-
-
     private static void startSpeedBoostTimer() {
         int originalSpeed = speed; // Save the original speed
 
@@ -417,6 +420,7 @@ public class AdvancedGameMode {
         }));
         speedBoostTimer.play();
     }
+
     private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
@@ -426,10 +430,12 @@ public class AdvancedGameMode {
         Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
         gc.drawImage(image, 0, 0);
     }
+
     private static void drawApple(GraphicsContext gc, double x, double y, Color color) {
         gc.setFill(color);
         gc.fillOval(x, y, cornersize, cornersize);
     }
+
     private static void render(GraphicsContext gc) {
         renderBackground(gc);
 
@@ -499,6 +505,7 @@ public class AdvancedGameMode {
         Corner lastSegment = snake.get(snake.size() - 1);
         snake.add(new Corner(lastSegment.x, lastSegment.y));
     }
+
     public static void drawShakingSnake(GraphicsContext gc) {
         Random random = new Random();
         for (Corner c : snake) {
@@ -510,7 +517,8 @@ public class AdvancedGameMode {
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 1, cornersize - 1);
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 2, cornersize - 2);
-        };
+        }
+        ;
     }
 
     public static void handleGameOver() {
@@ -565,7 +573,7 @@ public class AdvancedGameMode {
 
 
     public static void resetGame() {
-        speed=5;
+        speed = 5;
         if (gameLoop != null) {
             gameLoop.stop();
         }
@@ -580,10 +588,11 @@ public class AdvancedGameMode {
         direction = Dir.left;
         gameOver = false;
         newFood();
-        score=0;
+        score = 0;
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
     }
+
     private static void playSound(String soundFileName) {
         try {
             String soundFileUrl = AdvancedGameMode.class.getResource("/" + soundFileName).toExternalForm();
@@ -594,9 +603,11 @@ public class AdvancedGameMode {
             System.err.println("Sound file not found: " + soundFileName);
         }
     }
+
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;
     }
+
     public static void setMainStage(Stage stage) {
         mainStage = stage;
     }

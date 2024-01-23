@@ -7,8 +7,6 @@
     <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Design fehlt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/UI/HighScoreScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +198,7 @@
       <workItem from="1705867516995" duration="3806000" />
       <workItem from="1705872223142" duration="2454000" />
       <workItem from="1705875794651" duration="361000" />
-      <workItem from="1706007035228" duration="1713000" />
+      <workItem from="1706007035228" duration="3811000" />
     </task>
     <task id="LOCAL-00001" summary="Background check and 3 buttons check game window 500 x400">
       <option name="closed" value="true" />
@@ -338,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705954642170</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Design fehlt">
+      <option name="closed" value="true" />
+      <created>1706014428952</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1706014428952</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

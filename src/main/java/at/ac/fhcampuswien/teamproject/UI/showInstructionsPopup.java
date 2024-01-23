@@ -21,8 +21,7 @@ public class showInstructionsPopup {
         Image backgroundImage;
         layout.setAlignment(Pos.BOTTOM_CENTER);
         layout.setPadding(new Insets(20));
-            backgroundImage  = new Image("Instruction (1).jpg");
-
+        backgroundImage = new Image("Instruction (1).jpg");
 
 
         double screenWidth = 517;
@@ -45,8 +44,8 @@ public class showInstructionsPopup {
         startGameButton.setOnAction(e -> {
 
 
-                Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores, snakeGame.getUsername());
-                snakeGame.primaryStage.setScene(standardGameScene);
+            Scene standardGameScene = StandardGameMode.createGameScene(snakeGame.standardModeHighScores, snakeGame.getUsername());
+            snakeGame.primaryStage.setScene(standardGameScene);
 
 
         });
@@ -54,13 +53,13 @@ public class showInstructionsPopup {
         layout.getChildren().addAll(spacer, startGameButton);
         scene = new Scene(layout, 517, 412);
     }
-    public showInstructionsPopup(SnakeGame snakeGame,String Mode) {
+
+    public showInstructionsPopup(SnakeGame snakeGame, String Mode) {
         this.snakeGame = snakeGame; // Initialize the reference
         Image backgroundImage;
         layout.setAlignment(Pos.BOTTOM_CENTER);
         layout.setPadding(new Insets(20));
-            backgroundImage  = new Image("advancedinstructions.png");
-
+        backgroundImage = new Image("advancedinstructions.png");
 
 
         double screenWidth = 517;
@@ -84,7 +83,7 @@ public class showInstructionsPopup {
 
 
             Scene advancedGameMode = AdvancedGameMode.createGameScene(snakeGame.advancedModeHighScores, snakeGame.getUsername());
-                snakeGame.primaryStage.setScene(advancedGameMode);
+            snakeGame.primaryStage.setScene(advancedGameMode);
 
 
         });

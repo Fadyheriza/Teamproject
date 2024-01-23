@@ -40,11 +40,7 @@ public class HighScoreManager {
      * Sets up the high scores table in the database if it doesn't already exist.
      */
     private void setupDatabase() {
-        String sql = "CREATE TABLE IF NOT EXISTS highscores (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "username TEXT NOT NULL," +
-                "score INTEGER NOT NULL," +
-                "mode TEXT NOT NULL);";
+        String sql = "CREATE TABLE IF NOT EXISTS highscores (" + "id INTEGER PRIMARY KEY AUTOINCREMENT," + "username TEXT NOT NULL," + "score INTEGER NOT NULL," + "mode TEXT NOT NULL);";
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
@@ -59,8 +55,19 @@ public class HighScoreManager {
      * @param score    The score achieved by the player.
      * @param mode     The game mode in which the score was achieved.
      */
+    public void addScore(String username, int score, String mode) {
+        String insertSql = "INSERT INTO highscores (username, score, mode) VALUES (?, ?, ?)";
+        try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+            insertStmt.setString(1, username);
+            insertStmt.setInt(2, score);
+            insertStmt.setString(3, mode);
+            insertStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
+        cleanupOldScores(username, mode);
+    }
 
     /**
      * Removes old scores to maintain the maximum limit of high scores per user per mode.
@@ -69,9 +76,7 @@ public class HighScoreManager {
      * @param mode     The game mode.
      */
     private void cleanupOldScores(String username, String mode) {
-        String cleanupSql = "DELETE FROM highscores WHERE id IN (" +
-                "SELECT id FROM highscores WHERE username = ? AND mode = ? " +
-                "ORDER BY score DESC LIMIT " + maxScores + ", 99999)";
+        String cleanupSql = "DELETE FROM highscores WHERE id IN (" + "SELECT id FROM highscores WHERE username = ? AND mode = ? " + "ORDER BY score DESC LIMIT " + maxScores + ", 99999)";
         try (PreparedStatement cleanupStmt = conn.prepareStatement(cleanupSql)) {
             cleanupStmt.setString(1, username);
             cleanupStmt.setString(2, mode);
@@ -80,7 +85,6 @@ public class HighScoreManager {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Retrieves the high scores for a given game mode.
@@ -105,8 +109,6 @@ public class HighScoreManager {
         return scores;
     }
 
-
-
     /**
      * Finalizes the object by closing the database connection.
      */
@@ -128,80 +130,4 @@ public class HighScoreManager {
             }
         }
     }
-
-    private boolean usernameExists(String username, String mode) {
-        String checkUsernameSql = "SELECT COUNT(*) FROM highscores WHERE username = ? AND mode = ?";
-        try (PreparedStatement checkUsernameStmt = conn.prepareStatement(checkUsernameSql)) {
-            checkUsernameStmt.setString(1, username);
-            checkUsernameStmt.setString(2, mode);
-            try (ResultSet rs = checkUsernameStmt.executeQuery()) {
-                return rs.next() && rs.getInt(1) > 0;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private void updateScore(String username, int score, String mode) {
-        String updateSql = "UPDATE highscores SET score = ? WHERE username = ? AND mode = ?";
-        try (PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
-            updateStmt.setInt(1, score);
-            updateStmt.setString(2, username);
-            updateStmt.setString(3, mode);
-            updateStmt.executeUpdate();
-
-            // Cleanup old scores if necessary
-            cleanupOldScores(username, mode);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    public void addScore(String username, int score, String mode) {
-        // Check if the username already exists for the given mode
-        if (usernameExists(username, mode)) {
-            // Get the existing score for the user
-            int existingScore = getExistingScore(username, mode);
-
-            // Update the existing score if the new score is higher
-            if (score > existingScore) {
-                updateScore(username, score, mode);
-            }
-        } else {
-            // Add a new score since the user doesn't exist
-            insertNewScore(username, score, mode);
-        }
-    }
-
-
-    // Method to get the existing score for a user in a specific mode
-    private int getExistingScore(String username, String mode) {
-        String getScoreSql = "SELECT score FROM highscores WHERE username = ? AND mode = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(getScoreSql)) {
-            pstmt.setString(1, username);
-            pstmt.setString(2, mode);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt("score");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    private void insertNewScore(String username, int score, String mode) {
-        String insertSql = "INSERT INTO highscores (username, score, mode) VALUES (?, ?, ?)";
-        try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
-            insertStmt.setString(1, username);
-            insertStmt.setInt(2, score);
-            insertStmt.setString(3, mode);
-            insertStmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error executing SQL statement:");
-            e.printStackTrace();
-        }
-    }
-
 }

@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_23_01_2024_18_58_[Changes]" date="1706032737049" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_01_2024_18_58_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 23.01.2024 18:58 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Data/snakegame.db" />
+    <option name="AFTER_PATH" value="Data/snakegame.db" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_01_2024_18_58_[Changes]/snakegame.db" />
+  </binary>
+</changelist>

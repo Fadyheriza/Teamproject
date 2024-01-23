@@ -305,7 +305,7 @@ public class StandardGameMode {
             addNewSegment();
             newFood();
             score++;
-            speed += 0.75;
+            speed += 0.80;
         }
 
         // Render everything
@@ -373,10 +373,7 @@ public class StandardGameMode {
                 break;
             }
 
-            if (snake.size() == width * (height - 1)) {
-                // Alle Felder außer der ersten Zeile sind besetzt
-                break;
-            }
+
         }
     }
 

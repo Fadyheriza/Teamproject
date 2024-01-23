@@ -263,11 +263,15 @@ public class AdvancedGameMode {
     }
 
     public static void tick(GraphicsContext gc, double deltaTime) {
-        if (isPaused) {
-            return; // Skip updating game logic if the game is paused
+        if (isPaused || gameOver) {
+            return;
         }
 
-        // Automatically update direction if poisoned
+        if (!directionQueue.isEmpty()) {
+            direction = directionQueue.poll();
+        }
+
+        // Ändern der Richtungslogik, wenn vergiftet
         if (isPoisoned) {
             switch (direction) {
                 case up:
@@ -283,8 +287,6 @@ public class AdvancedGameMode {
                     direction = Dir.left;
                     break;
             }
-        } else if (!directionQueue.isEmpty()) {
-            direction = directionQueue.poll();
         }
 
         Corner head = snake.get(0);
@@ -329,6 +331,9 @@ public class AdvancedGameMode {
             }
         }
 
+
+
+
         // moving body
         for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).x = snake.get(i - 1).x;
@@ -340,41 +345,30 @@ public class AdvancedGameMode {
 
         // Check if snake eats the apple
         if (appleX == head.x && appleY == head.y) {
-            int previousScore = score;
-
             switch (currentAppleType) {
-                case 0: // RED_APPLE
-                    System.out.println("RED_APPLE");
-                    playSound(EAT_APPLE_SOUND);
-                    speed = Math.min(10, speed + 1); // Increase speed by 1
-                    score++;
-                    break;
                 case GOLD_APPLE:
                     System.out.println("GOLD_APPLE");
-                    playSound(SPEED_BOOST_SOUND);
+                    playSound(EAT_APPLE_SOUND);
+                    score += 1; // Nur 1 Punkt für den goldenen Apfel
                     startSpeedslowMotionTimer();
                     break;
                 case BLUE_APPLE:
                     System.out.println("BLUE_APPLE");
                     playSound(EAT_APPLE_SOUND);
-                    score += 3;
+                    score += 3; // 3 zusätzliche Punkte für den blauen Apfel
                     break;
                 case CHOCOLATE_Apple:
                     System.out.println("CHOCOLATE_Apple");
                     playSound(EAT_APPLE_SOUND);
                     playSound(SPEED_BOOST_SOUND);
                     startPoisonEffect();
+                    score += 1; // Nur 1 Punkt für den Schokoladenapfel
                     break;
                 default:
-                    System.out.println("default");
+                    System.out.println("RED_APPLE");
                     playSound(EAT_APPLE_SOUND);
-
-                    score++;
+                    score += 1; // 1 Punkt für den roten Apfel
                     break;
-            }
-
-            if (score > previousScore) {
-                speed = Math.min(10, speed + snake.size() / 5); // Adjust the speed increment as needed
             }
 
             addNewSegment(); // Add the new segment after updating score and apple type
@@ -395,7 +389,7 @@ public class AdvancedGameMode {
             speedBoostTimer.stop();
         }
 
-        speedBoostTimer = new Timeline(new KeyFrame(Duration.seconds(15), event -> {
+        speedBoostTimer = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
             speed = originalSpeed;
             speedBoostTimer.stop();
         }));
@@ -404,15 +398,28 @@ public class AdvancedGameMode {
 
     private static void startPoisonEffect() {
         isPoisoned = true;
+        int originalSpeed = speed;
+
+        speed = Math.max(1, speed - 2); // Verringern der Geschwindigkeit
+
         if (speedBoostTimer != null) {
             speedBoostTimer.stop();
         }
-        speedBoostTimer = new Timeline(new KeyFrame(Duration.seconds(15), event -> {
-            isPoisoned = false; // Reset poison effect after duration
-            lastKey = KeyCode.UNDEFINED; // Reset the last key to avoid control issues
+
+        speedBoostTimer = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            isPoisoned = false; // Effekt beenden
+            speed = originalSpeed; // Geschwindigkeit zurücksetzen
+
+            if (!isPaused) {
+                gameLoop.start();
+            }
         }));
+
+
+
         speedBoostTimer.play();
     }
+
 
 
     private static void renderBackground(GraphicsContext gc) {
@@ -454,7 +461,7 @@ public class AdvancedGameMode {
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.BLUE);
                 break;
             case CHOCOLATE_Apple:
-                drawApple(gc, appleX * cornersize, appleY * cornersize, Color.CHOCOLATE);
+                drawApple(gc, appleX * cornersize, appleY * cornersize, Color.BROWN);
                 break;
             default:
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.RED);
@@ -476,7 +483,7 @@ public class AdvancedGameMode {
     public static void newFood() {
         while (true) {
             appleX = rand.nextInt(width);
-            appleY = rand.nextInt(height);
+            appleY = rand.nextInt(height - 1) + 1; // Verhindert, dass der Apfel in der ersten Zeile (y=0) erscheint
 
             boolean isOccupied = false;
             for (Corner c : snake) {
@@ -487,10 +494,6 @@ public class AdvancedGameMode {
             }
 
             if (!isOccupied) {
-                break;
-            }
-            if (snake.size() == width * (height - 1)) {
-                // Alle Felder außer der ersten Zeile sind besetzt
                 break;
             }
 

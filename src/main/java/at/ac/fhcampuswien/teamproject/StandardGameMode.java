@@ -1,10 +1,12 @@
 package at.ac.fhcampuswien.teamproject;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,18 +16,14 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.animation.AnimationTimer;
-
+import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javafx.scene.image.Image;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
-
 import java.util.LinkedList;
 import java.util.Queue;
+
 
 public class StandardGameMode {
     static int score = 0;
@@ -54,18 +52,13 @@ public class StandardGameMode {
     static Queue<Dir> directionQueue = new LinkedList<>();
     static boolean isPaused = false;
 
-    private static void shakeSnake() {
-        Random random = new Random();
-        for (Corner c : snake) {
-            c.x += random.nextInt(3) - 1; // Zufällige Verschiebung um -1, 0 oder 1
-            c.y += random.nextInt(3) - 1;
-        }
-    }
 
+    // Define an enumeration for directions
     public enum Dir {
         left, right, up, down
     }
 
+    // Create a Corner class to represent snake segments
     public static class Corner {
         int x;
         int y;
@@ -76,12 +69,9 @@ public class StandardGameMode {
         }
     }
 
-    private static double lerp(double start, double end, double t) {
-        return start + t * (end - start);
-    }
-
     private static Scene currentGameScene;
 
+    // Create a method to handle pausing the game
     public static void handlePauseGame() {
         // Check if the game is already over, and if so, do nothing
         if (gameOver) {
@@ -114,7 +104,6 @@ public class StandardGameMode {
         }
     }
 
-
     private static VBox createPauseMenuLayout() {
         VBox pauseMenuLayout = new VBox(20);
         pauseMenuLayout.setAlignment(Pos.CENTER);
@@ -134,14 +123,13 @@ public class StandardGameMode {
         mainMenuButton.setOnAction(e -> {
             isPaused = false; // Ensure the game is unpaused
             score = 0; // Reset the score
-            mainStage.setScene(mainMenuScene); // Return to main menu without resetting
+            mainStage.setScene(mainMenuScene); // Return to the main menu without resetting
         });
 
         pauseMenuLayout.getChildren().addAll(pauseLabel, continueButton, mainMenuButton);
 
         return pauseMenuLayout;
     }
-
 
     private static AnimationTimer gameLoop;
 
@@ -183,7 +171,6 @@ public class StandardGameMode {
         }
         gameLoop.start();
 
-        // Create a separate AnimationTimer for the shaking effect
         shakeTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -250,6 +237,7 @@ public class StandardGameMode {
         return false;
     }
 
+    // Create a method to update the game state in each frame
     public static void tick(GraphicsContext gc, double deltaTime) {
         if (isPaused) {
             return; // Skip updating game logic if the game is paused
@@ -277,8 +265,7 @@ public class StandardGameMode {
                 break;
         }
 
-
-        if (newX < 0 || newX >= width || newY < 1 || newY >= height) { // Start checking from y = 1
+        if (newX < 0 || newX >= width || newY < 1 || newY >= height) {
             gameOver = true;
             return;
         }
@@ -291,7 +278,8 @@ public class StandardGameMode {
                 return;
             }
         }
-        //moving body
+
+        // Moving body
         for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).x = snake.get(i - 1).x;
             snake.get(i).y = snake.get(i - 1).y;
@@ -312,54 +300,52 @@ public class StandardGameMode {
         render(gc);
     }
 
+
     private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
         gc.clearRect(0, 0, width * cornersize, height * cornersize);
 
-        // background
+        // Background image
         String imageUrl = "bg.png";
         Image image = new Image(imageUrl, width * cornersize, height * cornersize, false, false);
         gc.drawImage(image, 0, 0);
     }
 
+
     private static void render(GraphicsContext gc) {
         renderBackground(gc);
 
-        // score
+        // Score display
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 25));
-
-        // Zeichnen des Texts mit einem schwarzen Rand
         String scoreText = "Score: " + score;
-        gc.setStroke(Color.BLACK); // Farbe des Rands
-        gc.setLineWidth(2); // Dicke des Rands
-        gc.strokeText(scoreText, 10, 20); // Zeichnen des Rands
 
-        // Zeichnen des Texts mit weißer Füllung
-        gc.setFill(Color.WHITE); // Farbe der Füllung
+        // Draw score text with a black border
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(2);
+        gc.strokeText(scoreText, 10, 20);
+
+        // Draw score text with white fill
+        gc.setFill(Color.WHITE);
         gc.fillText(scoreText, 10, 20);
 
-        //foodcolor
+        // Food color
         Color cc = Color.RED;
-
         gc.setFill(cc);
         gc.fillOval(appleX * cornersize, appleY * cornersize, cornersize, cornersize);
 
-        // snake
+        // Snake
         for (Corner c : snake) {
             gc.setFill(Color.DARKGRAY);
             gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 2, cornersize - 2);
-
         }
-
     }
 
-    // food random places
     public static void newFood() {
         while (true) {
             appleX = rand.nextInt(width);
-            appleY = rand.nextInt(height - 1) + 1; // Verhindert, dass der Apfel in der ersten Zeile (y=0) erscheint
+            appleY = rand.nextInt(height - 1) + 1;
 
             boolean isOccupied = false;
             for (Corner c : snake) {
@@ -372,14 +358,14 @@ public class StandardGameMode {
             if (!isOccupied) {
                 break;
             }
-
-
         }
     }
+
 
     public static void setMainStage(Stage stage) {
         mainStage = stage;
     }
+
 
     public static void addNewSegment() {
         Corner lastSegment = snake.get(snake.size() - 1);
@@ -389,20 +375,19 @@ public class StandardGameMode {
     public static void drawShakingSnake(GraphicsContext gc) {
         Random random = new Random();
         for (Corner c : snake) {
-            int shakeX = random.nextInt(3) - 1; // Zufällige Verschiebung um -1, 0 oder 1
+            int shakeX = random.nextInt(3) - 1;
             int shakeY = random.nextInt(3) - 1;
 
-            // Zeichnen der Schlange mit zufälligen Verschiebungen
             gc.setFill(Color.DARKGRAY);
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 1, cornersize - 1);
             gc.setFill(Color.BLACK);
             gc.fillRect(c.x * cornersize + shakeX, c.y * cornersize + shakeY, cornersize - 2, cornersize - 2);
         }
-        ;
     }
 
-    public static void handleGameOver() {
-        gameOver = true;
+    public static void handleGameOver(){
+
+    gameOver = true;
         if (gameLoop != null) {
             gameLoop.stop();
         }

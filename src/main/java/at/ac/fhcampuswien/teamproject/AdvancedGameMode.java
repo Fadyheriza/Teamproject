@@ -275,13 +275,13 @@ public class AdvancedGameMode {
         int newY = head.y;
 
         if (isPoisoned) {
-            // Invert controls if poisoned
-            switch (direction) {
+
+             switch (direction) {
                 case up:
-                    newY--;
+                    newY++;
                     break;
                 case down:
-                    newY++;
+                    newY--;
                     break;
                 case left:
                     newX++;
@@ -298,8 +298,7 @@ public class AdvancedGameMode {
                 return;
             }
         } else {
-            // Only update snake position if not poisoned
-            switch (direction) {
+             switch (direction) {
                 case up:
                     newY--;
                     break;
@@ -360,7 +359,7 @@ public class AdvancedGameMode {
                 case GOLD_APPLE:
                     System.out.println("GOLD_APPLE");
                     playSound(SPEED_BOOST_SOUND);
-                    startSpeedBoostTimer();
+                    startSpeedslowMotionTimer();
                     break;
                 case BLUE_APPLE:
                     System.out.println("BLUE_APPLE");
@@ -394,17 +393,17 @@ public class AdvancedGameMode {
     }
 
 
-    private static void startSpeedBoostTimer() {
+    private static void startSpeedslowMotionTimer() {
         int originalSpeed = speed; // Save the original speed
 
-        speed = 10; // Set the boosted speed
+        speed = 1; // Set the low speed
 
         if (speedBoostTimer != null) {
             speedBoostTimer.stop();
         }
 
         speedBoostTimer = new Timeline(new KeyFrame(Duration.seconds(15), event -> {
-            speed = originalSpeed; // Restore the original speed after the boost duration
+            speed = originalSpeed;
             speedBoostTimer.stop();
         }));
         speedBoostTimer.play();

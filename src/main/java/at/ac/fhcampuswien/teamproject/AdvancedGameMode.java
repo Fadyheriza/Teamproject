@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Random;
 
 import javafx.scene.image.Image;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -266,7 +267,23 @@ public class AdvancedGameMode {
             return; // Skip updating game logic if the game is paused
         }
 
-        if (!directionQueue.isEmpty()) {
+        // Automatically update direction if poisoned
+        if (isPoisoned) {
+            switch (direction) {
+                case up:
+                    direction = Dir.down;
+                    break;
+                case down:
+                    direction = Dir.up;
+                    break;
+                case left:
+                    direction = Dir.right;
+                    break;
+                case right:
+                    direction = Dir.left;
+                    break;
+            }
+        } else if (!directionQueue.isEmpty()) {
             direction = directionQueue.poll();
         }
 
@@ -274,54 +291,30 @@ public class AdvancedGameMode {
         int newX = head.x;
         int newY = head.y;
 
-        if (isPoisoned) {
+        switch (direction) {
+            case up:
+                newY--;
+                break;
+            case down:
+                newY++;
+                break;
+            case left:
+                newX--;
+                break;
+            case right:
+                newX++;
+                break;
+        }
+        if (newX < 0 || newX >= width || newY <  1 || newY >= height) {
+            gameOver = true;
+            isPoisoned = false; // Reset poison effect after game over
+            return;
+        }
 
-             switch (direction) {
-                case up:
-                    newY++;
-                    break;
-                case down:
-                    newY--;
-                    break;
-                case left:
-                    newX++;
-                    break;
-                case right:
-                    newX--;
-                    break;
-            }
-
-            // Check for collision with walls after inverting controls
-            if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
-                gameOver = true;
-                isPoisoned = false; // Reset poison effect after game over
-                return;
-            }
-        } else {
-             switch (direction) {
-                case up:
-                    newY--;
-                    break;
-                case down:
-                    newY++;
-                    break;
-                case left:
-                    newX--;
-                    break;
-                case right:
-                    newX++;
-                    break;
-            }
-
-            // Collision detection with walls
-            if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
-                // Check if the snake hits the wall
-                if (!isPoisoned) {
-                    // Only end the game if not poisoned
-                    gameOver = true;
-                }
-                return;
-            }
+        // Collision detection with walls
+        if (newX < 0 || newX >= width || newY < 1 || newY >= height) {
+            gameOver = true;
+            return;
         }
 
         // Collision detection with itself
@@ -416,9 +409,11 @@ public class AdvancedGameMode {
         }
         speedBoostTimer = new Timeline(new KeyFrame(Duration.seconds(15), event -> {
             isPoisoned = false; // Reset poison effect after duration
+            lastKey = KeyCode.UNDEFINED; // Reset the last key to avoid control issues
         }));
         speedBoostTimer.play();
     }
+
 
     private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
@@ -439,9 +434,17 @@ public class AdvancedGameMode {
         renderBackground(gc);
 
         // score
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font("", 30));
-        gc.fillText("Score: " + score, 10, 30);
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 25));
+
+        // Zeichnen des Texts mit einem schwarzen Rand
+        String scoreText = "Score: " + score;
+        gc.setStroke(Color.BLACK); // Farbe des Rands
+        gc.setLineWidth(2); // Dicke des Rands
+        gc.strokeText(scoreText, 10, 20); // Zeichnen des Rands
+
+        // Zeichnen des Texts mit weißer Füllung
+        gc.setFill(Color.WHITE); // Farbe der Füllung
+        gc.fillText(scoreText, 10, 20);
 
         switch (currentAppleType) {
             case GOLD_APPLE:
@@ -484,6 +487,10 @@ public class AdvancedGameMode {
             }
 
             if (!isOccupied) {
+                break;
+            }
+            if (snake.size() == width * (height - 1)) {
+                // Alle Felder außer der ersten Zeile sind besetzt
                 break;
             }
 

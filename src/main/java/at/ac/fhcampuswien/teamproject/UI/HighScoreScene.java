@@ -39,6 +39,7 @@ public class HighScoreScene {
 
         titleLabel = new Label();
         titleLabel.setFont(new Font("Arial", 20));
+        titleLabel.setTextFill(Color.WHITE);
 
         highScoreList = new ListView<>();
         highScoreList.setPrefHeight(5 * 24);

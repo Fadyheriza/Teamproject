@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="Design fehlt">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_01_2024_16_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_01_2024_16_32__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/snakegame.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data/snakegame.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/AdvancedGameMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/teamproject/HighScoreManager.java" afterDir="false" />
-    </list>
+    <list default="true" id="88844b39-5d69-46f2-aec4-1a064bb15afa" name="Changes" comment="change the highscore and added slow motion adn updated the instructions page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +52,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="9a17095d-2dec-4a4b-8201-a3a3549f45cd" />
+        <option name="accountId" value="0dd96d88-78db-461d-afb0-45ea69d5ac2f" />
         <option name="url" value="https://github.com/Fadyheriza/Teamproject.git" />
       </UrlAndAccount>
     </option>
@@ -97,7 +91,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ismai/IdeaProjects/Teamproject/src/main/resources",
+    "last_opened_file_path": "C:/Users/hadid/IdeaProjects/mfinal/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -112,6 +106,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hadid\IdeaProjects\mfinal\src\main\resources" />
       <recent name="C:\Users\ismai\IdeaProjects\Teamproject\src\main\resources" />
       <recent name="C:\Users\kingp\IdeaProjects\Teamproject\src\main\resources" />
     </key>
@@ -340,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705954642170</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="change the highscore and added slow motion adn updated the instructions page">
+      <option name="closed" value="true" />
+      <created>1706032794387</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1706032794387</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,6 +370,7 @@
     <MESSAGE value="design verbessern paar sachen vom review verbessert" />
     <MESSAGE value="Design und Advanced fehlt sonst alles da" />
     <MESSAGE value="Design fehlt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Design fehlt" />
+    <MESSAGE value="change the highscore and added slow motion adn updated the instructions page" />
+    <option name="LAST_COMMIT_MESSAGE" value="change the highscore and added slow motion adn updated the instructions page" />
   </component>
 </project>

@@ -72,8 +72,9 @@ public class GameModeScene {
                 snakeGame.setInstructionsShown2(true);
                 snakeGame.primaryStage.setScene(snakeGame.showInstructionsPopupscene2.scene);
             } else {
-            Scene advancedGameMode = AdvancedGameMode.createGameScene(snakeGame.advancedModeHighScores, snakeGame.getUsername());
-            snakeGame.primaryStage.setScene(advancedGameMode);}
+                Scene advancedGameMode = AdvancedGameMode.createGameScene(snakeGame.advancedModeHighScores, snakeGame.getUsername());
+                snakeGame.primaryStage.setScene(advancedGameMode);
+            }
         });
 
         // Button for viewing Advanced Mode high scores

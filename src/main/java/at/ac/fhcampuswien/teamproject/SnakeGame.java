@@ -23,7 +23,6 @@ public class SnakeGame extends Application {
     public HighScoreScene highScoreScene;
     public showInstructionsPopup showInstructionsPopupscene;
     public showInstructionsPopup showInstructionsPopupscene2;
-    private boolean advancedMode = false;
     public Label usernameLabel = new Label();
     public HighScoreManager standardModeHighScores = new HighScoreManager(5);
     public HighScoreManager advancedModeHighScores = new HighScoreManager(5);

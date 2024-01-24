@@ -1,4 +1,5 @@
 package at.ac.fhcampuswien.teamproject.UI;
+
 import at.ac.fhcampuswien.teamproject.HighScore;
 import at.ac.fhcampuswien.teamproject.SnakeGame;
 import javafx.animation.FadeTransition;
@@ -71,7 +72,6 @@ public class HighScoreScene {
         // Play animations when setting the mode
         fadeTransition.play();
         fillTransition.play();
-
         highScoreList.getItems().clear();
 
         List<HighScore> highScores = mode.equals("Standard") ?

@@ -387,7 +387,7 @@ public class StandardGameMode {
 
     public static void handleGameOver(){
 
-    gameOver = true;
+        gameOver = true;
         if (gameLoop != null) {
             gameLoop.stop();
         }

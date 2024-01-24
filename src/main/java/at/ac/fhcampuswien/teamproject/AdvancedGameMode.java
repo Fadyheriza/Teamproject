@@ -54,9 +54,9 @@ public class AdvancedGameMode {
     static KeyCode lastKey = KeyCode.UNDEFINED;
     static Queue<Dir> directionQueue = new LinkedList<>();
     static boolean isPaused = false;
-    private static final int GOLD_APPLE = 1;
-    private static final int BLUE_APPLE = 2;
-    private static final int CHOCOLATE_Apple = 3;
+    private static final int PowerUps_GOLD_APPLE = 1;
+    private static final int PowerUps_BLUE_APPLE = 2;
+    private static final int PowerUps_CHOCOLATE_Apple = 3;
 
     // Variables to track apple types and their effects
     private static int currentAppleType = 0;
@@ -68,13 +68,7 @@ public class AdvancedGameMode {
     private static final String GAME_OVER_SOUND = "games.mp3";
     private static MediaPlayer mediaPlayer;
 
-    private static void shakeSnake() {
-        Random random = new Random();
-        for (Corner c : snake) {
-            c.x += random.nextInt(3) - 1; // Zufällige Verschiebung um -1, 0 oder 1
-            c.y += random.nextInt(3) - 1;
-        }
-    }
+
 
 
     public enum Dir {
@@ -91,11 +85,13 @@ public class AdvancedGameMode {
         }
     }
 
-    private static double lerp(double start, double end, double t) {
-        return start + t * (end - start);
-    }
 
     private static Scene currentGameScene;
+    /**
+     * Handles the pausing and resuming of the game.
+     * When paused, displays a pause menu with options to continue or return to the main menu.
+     * When resumed, updates the game loop and scene.
+     */
 
     public static void handlePauseGame() {
         isPaused = !isPaused;
@@ -125,7 +121,10 @@ public class AdvancedGameMode {
 
         }
     }
-
+    /**
+     * Creates the layout for the pause menu, including labels and buttons.
+     * @return VBox layout for the pause menu.
+     */
 
     private static VBox createPauseMenuLayout() {
         VBox pauseMenuLayout = new VBox(20);
@@ -156,7 +155,13 @@ public class AdvancedGameMode {
 
 
     private static AnimationTimer gameLoop;
-
+    /**
+     * Initializes the main game scene, sets up canvas, event handlers, and starts the game loop.
+     * Also initializes snake, apple, and other game-related variables.
+     * @param scoreManager The high score manager.
+     * @param username The current player's username.
+     * @return The initialized game scene.
+     */
     public static Scene createGameScene(HighScoreManager scoreManager, String username) {
         highScoreManager = scoreManager;
         currentPlayerUsername = username;
@@ -261,7 +266,12 @@ public class AdvancedGameMode {
         if (current == KeyCode.D && last == KeyCode.A) return true;
         return false;
     }
-
+    /**
+     * Handles the core game logic in each frame, including snake movement, collision detection, and rendering.
+     * Updates the game state based on the elapsed time (deltaTime).
+     * @param gc The graphics context for rendering.
+     * @param deltaTime The elapsed time since the last frame.
+     */
     public static void tick(GraphicsContext gc, double deltaTime) {
         if (isPaused || gameOver) {
             return;
@@ -346,18 +356,18 @@ public class AdvancedGameMode {
         // Check if snake eats the apple
         if (appleX == head.x && appleY == head.y) {
             switch (currentAppleType) {
-                case GOLD_APPLE:
+                case PowerUps_GOLD_APPLE:
                     System.out.println("GOLD_APPLE");
                     playSound(EAT_APPLE_SOUND);
                     score += 1; // Nur 1 Punkt für den goldenen Apfel
                     startSpeedslowMotionTimer();
                     break;
-                case BLUE_APPLE:
+                case PowerUps_BLUE_APPLE:
                     System.out.println("BLUE_APPLE");
                     playSound(EAT_APPLE_SOUND);
                     score += 3; // 3 zusätzliche Punkte für den blauen Apfel
                     break;
-                case CHOCOLATE_Apple:
+                case PowerUps_CHOCOLATE_Apple:
                     System.out.println("CHOCOLATE_Apple");
                     playSound(EAT_APPLE_SOUND);
                     playSound(SPEED_BOOST_SOUND);
@@ -380,6 +390,9 @@ public class AdvancedGameMode {
     }
 
 
+    /**
+     * Starts a timer for a speed boost power-up, temporarily slowing down the snake.
+     */
     private static void startSpeedslowMotionTimer() {
         int originalSpeed = speed; // Save the original speed
 
@@ -396,6 +409,9 @@ public class AdvancedGameMode {
         speedBoostTimer.play();
     }
 
+    /**
+     * Starts a poison effect power-up, temporarily reducing the snake's speed and inverting its controls.
+     */
     private static void startPoisonEffect() {
         isPoisoned = true;
         int originalSpeed = speed;
@@ -420,7 +436,11 @@ public class AdvancedGameMode {
         speedBoostTimer.play();
     }
 
-
+    /**
+     * Renders the background of the game, clearing the canvas and drawing the specified background image.
+     * The image is loaded from the given file path, and its size is determined by the canvas dimensions.
+     * @param gc The graphics context for rendering.
+     */
 
     private static void renderBackground(GraphicsContext gc) {
         // Clear the canvas
@@ -432,10 +452,22 @@ public class AdvancedGameMode {
         gc.drawImage(image, 0, 0);
     }
 
+    /**
+     * Draws an apple on the canvas at the specified position with the given color.
+     * The apple is represented as a filled oval shape.
+     * @param gc The graphics context for rendering.
+     * @param x The x-coordinate of the apple's position.
+     * @param y The y-coordinate of the apple's position.
+     * @param color The color of the apple.
+     */
     private static void drawApple(GraphicsContext gc, double x, double y, Color color) {
         gc.setFill(color);
         gc.fillOval(x, y, cornersize, cornersize);
     }
+    /**
+     * Renders the game elements, including the background, snake, apple, and score.
+     * @param gc The graphics context for rendering.
+     */
 
     private static void render(GraphicsContext gc) {
         renderBackground(gc);
@@ -454,13 +486,13 @@ public class AdvancedGameMode {
         gc.fillText(scoreText, 10, 20);
 
         switch (currentAppleType) {
-            case GOLD_APPLE:
+            case PowerUps_GOLD_APPLE:
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.GOLD);
                 break;
-            case BLUE_APPLE:
+            case PowerUps_BLUE_APPLE:
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.BLUE);
                 break;
-            case CHOCOLATE_Apple:
+            case PowerUps_CHOCOLATE_Apple:
                 drawApple(gc, appleX * cornersize, appleY * cornersize, Color.BROWN);
                 break;
             default:
@@ -478,9 +510,11 @@ public class AdvancedGameMode {
 
     }
 
-
-    // food random places
-    public static void newFood() {
+    /**
+     * Generates a new food item (apple) and ensures it is placed in an unoccupied position on the canvas.
+     * The position of the apple is randomized, avoiding collision with the snake's body.
+     * Additionally, the type of the apple (red, gold, blue, chocolate) is determined based on the game's logic.
+     */    public static void newFood() {
         while (true) {
             appleX = rand.nextInt(width);
             appleY = rand.nextInt(height - 1) + 1; // Verhindert, dass der Apfel in der ersten Zeile (y=0) erscheint
@@ -509,12 +543,18 @@ public class AdvancedGameMode {
             currentAppleType = randomAppleType;
         }
     }
-
+    /**
+     * Adds a new segment to the snake, extending its length.
+     */
     public static void addNewSegment() {
         Corner lastSegment = snake.get(snake.size() - 1);
         snake.add(new Corner(lastSegment.x, lastSegment.y));
     }
-
+    /**
+     * Draws the shaking effect for the snake on the canvas.
+     * Randomly shifts each segment of the snake by -1, 0, or 1 pixels in both x and y directions.
+     * @param gc The graphics context for rendering.
+     */
     public static void drawShakingSnake(GraphicsContext gc) {
         Random random = new Random();
         for (Corner c : snake) {
@@ -530,6 +570,9 @@ public class AdvancedGameMode {
         ;
     }
 
+    /**
+     * Handles game over actions, stops the game loop, and displays the game over screen.
+     */
     public static void handleGameOver() {
         gameOver = true;
         if (gameLoop != null) {
@@ -579,7 +622,9 @@ public class AdvancedGameMode {
         score = 0;
 
     }
-
+    /**
+     * Resets the game state to its initial conditions.
+     */
 
     public static void resetGame() {
         speed = 5;
@@ -602,6 +647,10 @@ public class AdvancedGameMode {
 
     }
 
+    /**
+     * Plays a specified sound file for in-game events.
+     * @param soundFileName The filename of the sound file.
+     */
     private static void playSound(String soundFileName) {
         try {
             String soundFileUrl = AdvancedGameMode.class.getResource("/" + soundFileName).toExternalForm();
@@ -613,10 +662,17 @@ public class AdvancedGameMode {
         }
     }
 
+    /**
+     * Sets the main menu scene for navigation purposes.
+     * @param scene The main menu scene.
+     */
     public static void setMainMenuScene(Scene scene) {
         mainMenuScene = scene;
     }
-
+    /**
+     * Sets the main stage for navigation purposes.
+     * @param stage The main stage.
+     */
     public static void setMainStage(Stage stage) {
         mainStage = stage;
     }
